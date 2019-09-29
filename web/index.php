@@ -14,7 +14,7 @@
         </div>
         <div class="header-right">
             <a class="active" href="index.php">Home</a>
-            <a href="assignments.html">Assignments</a>
+            <a href="assignments.php">Assignments</a>
         </div>
     </div>
 
@@ -129,6 +129,7 @@
     <br />
     <br />
 
+	<!-- PHP countdown until end of semester -->
     <?php
     $d1=strtotime("December 18");
     $d2=ceil(($d1-time())/60/60/24);
