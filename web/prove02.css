@@ -1,0 +1,265 @@
+﻿/* Animation style based on https://codepen.io/sxrdev/pen/LXMwPb */
+$avatar-size: 32px;
+$body-background: #333641;
+
+@font-face {
+    font-family: "ubuntu";
+    font-style: italic;
+    font-weight: 300;
+    src: local("Lato Light Italic"), local("Lato-LightItalic"), url(https://fonts.gstatic.com/s/ubuntucondensed/v8/u-4k0rCzjgs5J7oXnJcM_0kACGMtT-Dfqw.woff2) format("woff2");
+}
+
+.title {
+    background: linear-gradient(to right, #0d541b 10%, #a66c0f 50%, #9c131e 60%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 1.5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a3b9c9;
+    font-family: "Calisto MT", serif;
+    color: #1c2321;
+    margin: 0;
+}
+
+.header {
+    overflow: hidden;
+    background-color: #1c2321;
+    padding: 20px 10px;
+    color: #f4f4f9
+}
+
+.header a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header-right {
+    float: right;
+}
+
+.header-right a:hover {
+    background-color: #e7ecef;
+    color: black;
+}
+
+.header a.active {
+    background-color: #7a918d;
+    color: black;
+}
+
+a {
+    color: #e7ecef;
+}
+
+#mmm {
+    text-transform: uppercase;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 760px) {
+    #mmm {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+h1{
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.buttonOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    padding: 5px;
+    margin: 5px;
+}
+
+button:hover{
+    background-color: #7a918d;
+    border-color: #3e4a48;
+}
+
+.printers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+figcaption {
+    width: 400px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animation style based on https://codepen.io/finnhvman/pen/BGmygj */
+.deconstructed {
+    position: relative;
+    margin: auto;
+    height: 1em;
+    color: transparent;
+    font-family: 'Cambay', sans-serif;
+    font-size: 10vw;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.03em;
+}
+
+.deconstructed > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #ffff64;
+    pointer-events: none;
+}
+
+.deconstructed > div:nth-child(1) {
+    -webkit-mask-image: linear-gradient(black 25%, transparent 25%);
+    mask-image: linear-gradient(black 25%, transparent 25%);
+    animation: deconstructed1 5s infinite;
+}
+
+.deconstructed > div:nth-child(2) {
+    -webkit-mask-image: linear-gradient(transparent 25%, black 25%, black 50%, transparent 50%);
+    mask-image: linear-gradient(transparent 25%, black 25%, black 50%, transparent 50%);
+    animation: deconstructed2 5s infinite;
+}
+
+.deconstructed > div:nth-child(3) {
+    -webkit-mask-image: linear-gradient(transparent 50%, black 50%, black 75%, transparent 75%);
+    mask-image: linear-gradient(transparent 50%, black 50%, black 75%, transparent 75%);
+    animation: deconstructed3 5s infinite;
+}
+
+.deconstructed > div:nth-child(4) {
+    -webkit-mask-image: linear-gradient(transparent 75%, black 75%);
+    mask-image: linear-gradient(transparent 75%, black 75%);
+    animation: deconstructed4 5s infinite;
+}
+
+@keyframes deconstructed1 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    26% {
+        transform: translateX(0%);
+    }
+
+    83% {
+        transform: translateX(-0.1%);
+    }
+
+    100% {
+        transform: translateX(-120%);
+    }
+}
+
+@keyframes deconstructed2 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    24% {
+        transform: translateX(0.5%);
+    }
+
+    82% {
+        transform: translateX(-0.2%);
+    }
+
+    100% {
+        transform: translateX(-125%);
+    }
+}
+
+@keyframes deconstructed3 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    22% {
+        transform: translateX(0%);
+    }
+
+    81% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-130%);
+    }
+}
+
+@keyframes deconstructed4 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    20% {
+        transform: translateX(0%);
+    }
+
+    80% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-135%);
+    }
+}
