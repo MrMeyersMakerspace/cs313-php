@@ -33,7 +33,7 @@
     <?php
     $d1=strtotime("December 18");
     $d2=ceil(($d1-time())/60/60/24);
-    echo "There are " . $d2 ." days until the end of the semester!.";
+    echo "PHP tells me there are " . $d2 ." days until the end of the semester!";
     ?>
 
 </body>
