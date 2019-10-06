@@ -21,10 +21,10 @@
 
     <h1>Welcome to the 3D Printer Store!!</h1>
 
-    <p id="description">Below you will find a list of excellent 3D printers in all price points.  Please click on an item to see more information or select the number you'd like and click on add to cart to add the item(s) to your shopping cart.</p>
-    <div id="test">
+    <p id="description">Below you will find a list of excellent 3D printers in all price points.  Please select the number of 3D printers you'd like to order and click on add to cart to add the item(s) to your shopping cart.</p>
+    
+    <div id="test"></div>
 
-    </div>
     <div class="printers">
         <figure id="selectMini" class="item">
             <img src="selectMini.jpg" alt="Monoprice Select Mini Pro" height="300" class="printer"/>
@@ -75,6 +75,78 @@
         </figure>
     </div>
 
-    <script src="prove03.js"></script>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        var totalItems = 0;
+
+        function addMini() {
+            var numMini = document.getElementById("miniQuantity").value;
+            if (numMini > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numMini);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+
+        function addEnder() {
+            var numEnder = document.getElementById("enderQuantity").value;
+            if (numEnder > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numEnder);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+
+        function addVoxel() {
+            var numVoxel = document.getElementById("voxelQuantity").value;
+            if (numVoxel > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numVoxel);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+
+        function addCR10() {
+            var numCR10 = document.getElementById("cr10Quantity").value;
+            if (numCR10 > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numCR10);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+
+        function addCR10S() {
+            var numCR10S = document.getElementById("cr10sQuantity").value;
+            if (numCR10S > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numCR10S);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+
+        function addPrusa() {
+            var numPrusa = document.getElementById("prusaQuantity").value;
+            if (numPrusa > 0) {
+                totalItems = parseInt(totalItems) + parseInt(numPrusa);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
+            } else {
+                alert("Please select a number to add to the cart");
+            }
+        }
+    </script>
 </body>
 </html>
