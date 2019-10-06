@@ -1,0 +1,80 @@
+﻿<!-- <?php  //  Start the session  session_start();  ?>  -->
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Printer Store</title>
+    <link rel="stylesheet" type="text/css" href="prove03.css" />
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="browseItems.html" id="pageName">3D Printer Store</a>
+        </div>
+        <div class="header-right">
+            <a class="active" href="browseItems.html">Browse Items</a>
+            <a href="cart.php">Cart <span id="items"></span></a>
+        </div>
+    </div>
+
+    <h1>Welcome to the 3D Printer Store!!</h1>
+
+    <p id="description">Below you will find a list of excellent 3D printers in all price points.  Please click on an item to see more information or select the number you'd like and click on add to cart to add the item(s) to your shopping cart.</p>
+    <div id="test">
+
+    </div>
+    <div class="printers">
+        <figure id="selectMini" class="item">
+            <img src="selectMini.jpg" alt="Monoprice Select Mini Pro" height="300" class="printer"/>
+            <figcaption>
+                <h2>Monoprice Select Mini<br />$200</h2>
+                <label>Quantity: </label><input type="number" id="miniQuantity" min="1" max="10" onkeydown="return false"/><button onclick="addMini()">Add To Cart</button>
+            </figcaption>
+        </figure>
+
+        <figure id="ender3" class="item">
+            <img src="ender3.png" alt="Creality Ender 3" height="300" class="printer"/>
+            <figcaption>
+                <h2>Creality Ender 3<br />$230</h2>
+                <label>Quantity: </label><input type="number" id="enderQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addEnder()">Add To Cart</button>
+            </figcaption>
+        </figure>
+
+        <figure id="voxel" class="item">
+            <img src="voxel.jpg" alt="Monoprice Voxel" height="300" class="printer"/>
+            <figcaption>
+                <h2>Monoprice Voxel<br />$400</h2>
+                <label>Quantity: </label><input type="number" id="voxelQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addVoxel()">Add To Cart</button>
+            </figcaption>
+        </figure>
+
+        <figure id="cr10" class="item">
+            <img src="cr10.jpg" alt="Creality CR-10" height="300" class="printer"/>
+            <figcaption>
+                <h2>Creality CR-10<br />$350</h2>
+                <label>Quantity: </label><input type="number" id="cr10Quantity" min="1" max="10" onkeydown="return false" /><button onclick="addCR10()">Add To Cart</button>
+            </figcaption>
+        </figure>
+
+        <figure id="cr10s5" class="item">
+            <img src="cr10s5.jpg" alt="Creality CR-10S5" height="300" class="printer"/>
+            <figcaption>
+                <h2>Creality CR-10S5<br />$760</h2>
+                <label>Quantity: </label><input type="number" id="cr10sQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addCR10S()">Add To Cart</button>
+            </figcaption>
+        </figure>
+
+        <figure id="prusa" class="item">
+            <img src="prusa.jpg" alt="Prusa MK3S" height="300" class="printer"/>
+            <figcaption>
+                <h2>Prusa MK3S<br />$750</h2>
+                <label>Quantity: </label><input type="number" id="prusaQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addPrusa()">Add To Cart</button>
+            </figcaption>
+        </figure>
+    </div>
+
+    <script src="prove03.js"></script>
+</body>
+</html>
