@@ -19,5 +19,5 @@
 	);
 
 	echo json_encode($printerArray);*/
-	print($_REQUEST["mini"]);
+	print($_GET["mini"]);
 ?>
