@@ -19,5 +19,6 @@
 				"prusa"	=>	$_SESSION["prusa"]
 		);
 
+		print($_REQUEST["mini"]);
 		echo json_encode($printerArray);
 ?>
