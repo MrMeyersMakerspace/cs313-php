@@ -10,12 +10,12 @@
 	$_SESSION["Sprusa"] = $_REQUEST["prusa"];
 
 	$printerArray = array(
-			"mini"	=>	$_SESSION["Smini"],
-			"ender"	=>	$_SESSION["Sender"],
-			"voxel"	=>	$_SESSION["Svoxel"],
-			"cr10"	=>	$_SESSION["Scr10"],
-			"cr10s"	=>	$_SESSION["Scr10s"],
-			"prusa"	=>	$_SESSION["Sprusa"]
+			"mini"	=>	5,	//$_SESSION["Smini"],
+			"ender"	=>	4,	//$_SESSION["Sender"],
+			"voxel"	=>	3,	//$_SESSION["Svoxel"],
+			"cr10"	=>	2,	//$_SESSION["Scr10"],
+			"cr10s"	=>	2,	//$_SESSION["Scr10s"],
+			"prusa"	=>	1	//$_SESSION["Sprusa"]
 	);
 
 	echo json_encode($printerArray);
