@@ -2,23 +2,29 @@
     //  Start the session
     session_start();
 
-	$_SESSION["counter"] = $_SESSION["counter"] + 1;
-	echo $_SESSION["counter"];
-	/*$_SESSION["Smini"]  = $_REQUEST["mini"];
-	$_SESSION["Sender"] = $_REQUEST["ender"];
-	$_SESSION["Svoxel"] = $_REQUEST["voxel"];
-	$_SESSION["Scr10"]  = $_REQUEST["cr10"];
-	$_SESSION["Scr10s"] = $_REQUEST["cr10s"];
-	$_SESSION["Sprusa"] = $_REQUEST["prusa"];
+	if (isset($_GET["mini"])) {
+	$_SESSION["mini"]  = $_GET["mini"];
+	$_SESSION["ender"] = $_GET["ender"];
+	$_SESSION["voxel"] = $_GET["voxel"];
+	$_SESSION["cr10"]  = $_GET["cr10"];
+	$_SESSION["cr10s"] = $_GET["cr10s"];
+	$_SESSION["prusa"] = $_GET["prusa"];
+	}
+
+	echo "<br>";
+	var_dump($_REQUEST);
+	echo "<br>";
+	var_dump($_SESSION);
+	echo "<br>";
 
 	$printerArray = array(
-			"mini"	=>	$_SESSION["Smini"],		//5,	
-			"ender"	=>	$_SESSION["Sender"],	//4,	
-			"voxel"	=>	$_SESSION["Svoxel"],	//3,	
-			"cr10"	=>	$_SESSION["Scr10"],		//2,	
-			"cr10s"	=>	$_SESSION["Scr10s"],	//2,	
-			"prusa"	=>	$_SESSION["Sprusa"]		//1 	
+			"mini"	=>	$_SESSION["mini"],	
+			"ender"	=>	$_SESSION["ender"],	
+			"voxel"	=>	$_SESSION["voxel"],	
+			"cr10"	=>	$_SESSION["cr10"],	
+			"cr10s"	=>	$_SESSION["cr10s"],	
+			"prusa"	=>	$_SESSION["prusa"]		
 	);
 
-	echo json_encode($printerArray);*/
+	echo json_encode($printerArray);
 ?>
