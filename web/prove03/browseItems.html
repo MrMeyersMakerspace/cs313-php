@@ -174,8 +174,8 @@
                     alert("reached PHP to send data");
                 }
             }
-            xhttp.open("POST", "siteData.php", true);
-            xhttp.send(printers);
+            xhttp.open("GET", url, true);
+            xhttp.send();
         }
 
         // Gets current cart data saved as session on php page
