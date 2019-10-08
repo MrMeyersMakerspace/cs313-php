@@ -1,7 +1,8 @@
 ﻿<?php
     //  Start the session
     session_start();
-		
+	?>
+		<?php
 		$_SESSION["mini"]  = $_REQUEST["mini"];
 		$_SESSION["ender"] = $_REQUEST["ender"];
 		$_SESSION["voxel"] = $_REQUEST["voxel"];
