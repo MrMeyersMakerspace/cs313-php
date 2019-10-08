@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<!-- <?php  //  Start the session  session_start();  ?>  -->
+
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,25 +15,27 @@
         </div>
         <div class="header-right">
             <a class="active" href="browseItems.html">Browse Items</a>
-            <a href="cart.html">Cart <span id="items"></span></a>
+            <a href="cart.php">Cart <span id="items"></span></a>
         </div>
     </div>
 
     <h1>Welcome to the 3D Printer Store!!</h1>
 
     <p id="description">Below you will find a list of excellent 3D printers in all price points.  Please select the number of 3D printers you'd like to order and click on add to cart to add the item(s) to your shopping cart.</p>
+    
+    <div id="test"></div>
 
     <div class="printers">
         <figure id="selectMini" class="item">
-            <img src="selectMini.jpg" alt="Monoprice Select Mini Pro" height="300" class="printer" />
+            <img src="selectMini.jpg" alt="Monoprice Select Mini Pro" height="300" class="printer"/>
             <figcaption>
                 <h2>Monoprice Select Mini<br />$200</h2>
-                <label>Quantity: </label><input type="number" id="miniQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addMini()">Add To Cart</button>
+                <label>Quantity: </label><input type="number" id="miniQuantity" min="1" max="10" onkeydown="return false"/><button onclick="addMini()">Add To Cart</button>
             </figcaption>
         </figure>
 
         <figure id="ender3" class="item">
-            <img src="ender3.png" alt="Creality Ender 3" height="300" class="printer" />
+            <img src="ender3.png" alt="Creality Ender 3" height="300" class="printer"/>
             <figcaption>
                 <h2>Creality Ender 3<br />$230</h2>
                 <label>Quantity: </label><input type="number" id="enderQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addEnder()">Add To Cart</button>
@@ -39,7 +43,7 @@
         </figure>
 
         <figure id="voxel" class="item">
-            <img src="voxel.jpg" alt="Monoprice Voxel" height="300" class="printer" />
+            <img src="voxel.jpg" alt="Monoprice Voxel" height="300" class="printer"/>
             <figcaption>
                 <h2>Monoprice Voxel<br />$400</h2>
                 <label>Quantity: </label><input type="number" id="voxelQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addVoxel()">Add To Cart</button>
@@ -47,7 +51,7 @@
         </figure>
 
         <figure id="cr10" class="item">
-            <img src="cr10.jpg" alt="Creality CR-10" height="300" class="printer" />
+            <img src="cr10.jpg" alt="Creality CR-10" height="300" class="printer"/>
             <figcaption>
                 <h2>Creality CR-10<br />$350</h2>
                 <label>Quantity: </label><input type="number" id="cr10Quantity" min="1" max="10" onkeydown="return false" /><button onclick="addCR10()">Add To Cart</button>
@@ -55,7 +59,7 @@
         </figure>
 
         <figure id="cr10s5" class="item">
-            <img src="cr10s5.jpg" alt="Creality CR-10S5" height="300" class="printer" />
+            <img src="cr10s5.jpg" alt="Creality CR-10S5" height="300" class="printer"/>
             <figcaption>
                 <h2>Creality CR-10S5<br />$760</h2>
                 <label>Quantity: </label><input type="number" id="cr10sQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addCR10S()">Add To Cart</button>
@@ -63,7 +67,7 @@
         </figure>
 
         <figure id="prusa" class="item">
-            <img src="prusa.jpg" alt="Prusa MK3S" height="300" class="printer" />
+            <img src="prusa.jpg" alt="Prusa MK3S" height="300" class="printer"/>
             <figcaption>
                 <h2>Prusa MK3S<br />$750</h2>
                 <label>Quantity: </label><input type="number" id="prusaQuantity" min="1" max="10" onkeydown="return false" /><button onclick="addPrusa()">Add To Cart</button>
@@ -76,123 +80,72 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Printer object to track number of printers
-        var printers = {
-            mini: 0,
-            ender: 0,
-            voxel: 0,
-            cr10: 0,
-            cr10s: 0,
-            prusa: 0
-        };
+        var totalItems = 0;
 
-        // Adds mini printers to printer object on button click
         function addMini() {
             var numMini = document.getElementById("miniQuantity").value;
             if (numMini > 0) {
-                printers.mini += parseInt(numMini);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numMini);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
         }
 
-        // Adds ender printers to printer object on button click
         function addEnder() {
             var numEnder = document.getElementById("enderQuantity").value;
             if (numEnder > 0) {
-                printers.ender += parseInt(numEnder);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numEnder);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
         }
 
-        // Adds voxel printers to printer object on button click
         function addVoxel() {
             var numVoxel = document.getElementById("voxelQuantity").value;
             if (numVoxel > 0) {
-                printers.voxel += parseInt(numVoxel);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numVoxel);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
         }
 
-        // Adds cr10 printers to printer object on button click
         function addCR10() {
             var numCR10 = document.getElementById("cr10Quantity").value;
             if (numCR10 > 0) {
-                printers.cr10 += parseInt(numCR10);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numCR10);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
         }
 
-        // Adds cr10s printers to printer object on button click
         function addCR10S() {
             var numCR10S = document.getElementById("cr10sQuantity").value;
             if (numCR10S > 0) {
-                printers.cr10s += parseInt(numCR10S);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numCR10S);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
         }
 
-        // Adds prusa printers to printer object on button click
         function addPrusa() {
             var numPrusa = document.getElementById("prusaQuantity").value;
             if (numPrusa > 0) {
-                printers.prusa += parseInt(numPrusa);
-                updateCart();
+                totalItems = parseInt(totalItems) + parseInt(numPrusa);
+                document.getElementById("items").innerHTML = totalItems;
+                document.getElementById("items").style.display = "inline";
             } else {
                 alert("Please select a number to add to the cart");
             }
-        }
-
-        // Updates the cart based off what is in the printers object and makes sure amount is visible
-        function updateCart() {
-            var totalItems = printers.mini + printers.ender + printers.voxel + printers.cr10 + printers.cr10s + printers.prusa;
-            document.getElementById("items").innerHTML = totalItems;
-            document.getElementById("items").style.display = "inline";
-            updatePrinters();
-        }
-
-        // Updates printer objects on the server using a php page with a session
-        function updatePrinters() {
-            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
-
-            //document.getElementById("description").innerHTML = url;
-
-            // Update php page with new cart information
-            var xhttp = XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    //DO STUFF
-                }
-            }
-            xhttp.open("GET", url, true);
-            xhttp.send();
-        }
-
-        // Gets current cart data saved as session on php page
-        function loadJSON() {
-            // Create GET url with proper query string
-            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
-
-            document.getElementById("description").innerHTML = url;
-
-            // Update php page with new cart information
-            var xhttp = XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    //DO STUFF
-                }
-            }
-            xhttp.open("GET", url, true);
-            xhttp.send();
         }
     </script>
 </body>

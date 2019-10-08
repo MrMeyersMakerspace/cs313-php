@@ -137,3 +137,17 @@ figcaption {
     color: #999900;
 }
 
+.cartItem {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #7a918d;
+    border-color: black;
+    border: ridge;
+}
+
+.cartItem > div {
+    margin: 10px;
+}

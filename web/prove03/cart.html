@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Printer Store</title>
+    <link rel="stylesheet" type="text/css" href="prove03.css" />
+</head>
+<body onload="onPageLoad()">
+    <div class="header">
+        <div>
+            <a href="browseItems.html" id="pageName">3D Printer Store</a>
+        </div>
+        <div class="header-right">
+            <a href="browseItems.html">Browse Items</a>
+            <a class="active" href="cart.html">Cart <span id="items"></span></a>
+        </div>
+    </div>
+
+    <h1>Shopping Cart</h1>
+
+    <div id="test"></div>
+
+    <div id="shoppingCart">
+        <div id="miniCart" class="cartItem">
+            <div>
+                <img src="selectMini.jpg" alt="Monoprice Select Mini Pro" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Monoprice Select Mini<br />$200</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="miniQuantity" min="1" max="100" onkeydown="return false" onchange="changeMini()" value="0"/>
+            </div>
+            <div>
+                <button onclick="removeItem(1)">Remove Item</button>
+            </div>
+        </div>
+
+        <div id="enderCart" class="cartItem">
+            <div>
+                <img src="ender3.png" alt="Creality Ender 3" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Creality Ender 3<br />$230</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="enderQuantity" min="1" max="100" onkeydown="return false" onchange="changeEnder()" />
+            </div>
+            <div>
+                <button onclick="removeItem(2)">Remove Item</button>
+            </div>
+        </div>
+
+        <div id="voxelCart" class="cartItem">
+            <div>
+                <img src="voxel.jpg" alt="Monoprice Voxel" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Monoprice Voxel<br />$400</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="voxelQuantity" min="1" max="100" onkeydown="return false" onchange="changeVoxel()" />
+            </div>
+            <div>
+                <button onclick="removeItem(3)">Remove Item</button>
+            </div>
+        </div>
+
+        <div id="cr10Cart" class="cartItem">
+            <div>
+                <img src="cr10.jpg" alt="Creality CR-10" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Creality CR-10<br />$350</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="cr10Quantity" min="1" max="100" onkeydown="return false" onchange="changeCR10()" />
+            </div>
+            <div>
+                <button onclick="removeItem(4)">Remove Item</button>
+            </div>
+        </div>
+
+        <div id="cr10sCart" class="cartItem">
+            <div>
+                <img src="cr10s5.jpg" alt="Creality CR-10S5" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Creality CR-10S5<br />$760</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="cr10sQuantity" min="1" max="100" onkeydown="return false" onchange="changeCR10S()" />
+            </div>
+            <div>
+                <button onclick="removeItem(5)">Remove Item</button>
+            </div>
+        </div>
+
+        <div id="prusaCart" class="cartItem">
+            <div>
+                <img src="prusa.jpg" alt="Prusa MK3S" height="100" class="printer" />
+            </div>
+            <div style="flex-basis: 250px">
+                <h2>Prusa MK3S<br />$750</h2>
+            </div>
+            <div>
+                <label>Qty: </label><input type="number" id="prusaQuantity" min="1" max="100" onkeydown="return false" onchange="changePrusa()" />
+            </div>
+            <div>
+                <button onclick="removeItem(6)">Remove Item</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Printer object to track number of printers
+        var printers = {
+            mini: 1,
+            ender: 1,
+            voxel: 1,
+            cr10: 1,
+            cr10s: 1,
+            prusa: 1
+        };
+
+        // Removes the item from the cart
+        function removeItem(num) {
+            switch (num) {
+                case 1:
+                    document.getElementById("miniCart").style.display = "none";
+                    printers.mini = 0;
+                    updateCart();
+                    break;
+                case 2:
+                    document.getElementById("enderCart").style.display = "none";
+                    printers.ender = 0;
+                    updateCart();
+                    break;
+                case 3:
+                    document.getElementById("voxelCart").style.display = "none";
+                    printers.voxel = 0;
+                    updateCart();
+                    break;
+                case 4:
+                    document.getElementById("cr10Cart").style.display = "none";
+                    printers.cr10 = 0;
+                    updateCart();
+                    break;
+                case 5:
+                    document.getElementById("cr10sCart").style.display = "none";
+                    printers.cr10s = 0;
+                    updateCart();
+                    break;
+                case 6:
+                    document.getElementById("prusaCart").style.display = "none";
+                    printers.prusa = 0;
+                    updateCart();
+                    break;
+            }
+        }
+
+        // Changes number of mini printers in the cart
+        function changeMini() {
+            var numMini = document.getElementById("miniQuantity").value;
+            if (numMini > 0) {
+                printers.mini = parseInt(numMini);
+                updateCart();
+            }
+        }
+
+        // Changes number of ender printers in the cart
+        function changeEnder() {
+            var numEnder = document.getElementById("enderQuantity").value;
+            if (numEnder > 0) {
+                printers.ender = parseInt(numEnder);
+                updateCart();
+            }
+        }
+
+        // Changes number of voxel printers in the cart
+        function changeVoxel() {
+            var numVoxel = document.getElementById("voxelQuantity").value;
+            if (numVoxel > 0) {
+                printers.voxel = parseInt(numVoxel);
+                updateCart();
+            }
+        }
+
+        // Changes number of cr10 printers in the cart
+        function changeCR10() {
+            var numCR10 = document.getElementById("cr10Quantity").value;
+            if (numCR10 > 0) {
+                printers.cr10 = parseInt(numCR10);
+                updateCart();
+            }
+        }
+
+        // Changes number of cr10s printers in the cart
+        function changeCR10S() {
+            var numCR10S = document.getElementById("cr10sQuantity").value;
+            if (numCR10S > 0) {
+                printers.cr10s = parseInt(numCR10S);
+                updateCart();
+            }
+        }
+
+        // Changes number of prusa printers in the cart
+        function changePrusa() {
+            var numPrusa = document.getElementById("prusaQuantity").value;
+            if (numPrusa > 0) {
+                printers.prusa = parseInt(numPrusa);
+                updateCart();
+            }
+        }
+
+        // Updates the cart based off what is in the printers object and makes sure amount is visible
+        function updateCart() {
+            var totalItems = printers.mini + printers.ender + printers.voxel + printers.cr10 + printers.cr10s + printers.prusa;
+            document.getElementById("items").innerHTML = totalItems;
+            document.getElementById("items").style.display = "inline";
+            updatePrinters();
+        }
+
+        // Updates printer objects on the server using a php page with a session
+        function updatePrinters() {
+            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
+
+            // Update php page with new cart information
+            var xhttp = XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //DO STUFF
+                    alert("Found siteData.php successfully!")
+                }
+            }
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        // Gets current cart data saved as session on php page
+        function loadJSON() {
+            // Update php page with new cart information
+            var xhttp = XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //DO STUFF
+                    var JSONData = JSON.parse(this.resposeText);
+                    printers.mini = JSONData.mini;
+                    printers.ender = JSONData.ender;
+                    printers.voxel = JSONData.voxel;
+                    printers.cr10 = JSONData.cr10;
+                    printers.cr10s = JSONData.cr10s;
+                    printers.prusa = JSONData.prusa;
+                }
+            }
+            xhttp.open("GET", "siteData.php", true);
+            xhttp.send();
+        }
+
+        // Sets up page on load
+        function onPageLoad() {
+            // Changes quantity numbers to values from printer object
+            updateCart();
+            document.getElementById("miniQuantity").value = printers.mini;
+            document.getElementById("enderQuantity").value = printers.ender;
+            document.getElementById("voxelQuantity").value = printers.voxel;
+            document.getElementById("cr10Quantity").value = printers.cr10;
+            document.getElementById("cr10sQuantity").value = printers.cr10s;
+            document.getElementById("prusaQuantity").value = printers.prusa;
+        }
+    </script>
+</body>
+
+</html>
