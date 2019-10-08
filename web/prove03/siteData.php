@@ -1,5 +1,5 @@
 ﻿<?php
-    //  Start the session
+    /*//  Start the session
     session_start();
 
 	$_SESSION["Smini"]  = $_REQUEST["mini"];
@@ -18,5 +18,6 @@
 			"prusa"	=>	$_SESSION["Sprusa"]
 	);
 
-	echo json_encode($printerArray);
+	echo json_encode($printerArray);*/
+	print($_REQUEST["mini"]);
 ?>
