@@ -10,12 +10,12 @@
 		$_SESSION["Sprusa"] = $_GET["prusa"];*/
 
 		$printerArray = array(
-				"Amini"		=>	$_GET["mini"],
-				"Aender"	=>	$_GET["ender"],
-				"Avoxel"	=>	$_GET["voxel"],
-				"Acr10"		=>	$_GET["cr10"],
-				"Acr10s"	=>	$_GET["cr10s"],
-				"Aprusa"	=>	$_GET["prusa"]
+				"mini"	=>	$_GET["mini"],
+				"ender"	=>	$_GET["ender"],
+				"voxel"	=>	$_GET["voxel"],
+				"cr10"	=>	$_GET["cr10"],
+				"cr10s"	=>	$_GET["cr10s"],
+				"prusa"	=>	$_GET["prusa"]
 		);
 
 		echo json_encode($printerArray);
