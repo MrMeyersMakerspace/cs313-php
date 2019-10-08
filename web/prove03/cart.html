@@ -226,25 +226,7 @@
             updatePrinters();
         }
 
-        function add_to_session(item) {
-            var group = document.getElementsByName(item.getAttribute("name"));
-            var title = group[0].innerHTML
-            var img_src = group[1].firstChild.getAttribute("src");
-            var img_alt = group[1].firstChild.getAttribute("alt");
-            var price = group[2].innerHTML;
-            var url = "view_cart.php?title=" + title + "&img_src=" + img_src + "&img_alt=" + img_alt + "&price=" + price + '&ajax="true"';
-            var httpRequest = new XMLHttpRequest();
-            httpRequest.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    //no return just send values
-                    console.log(this.responseText);
-                }
-            }
-            httpRequest.open("GET", url, true);
-            httpRequest.send();
-        }
-
-        /*// Updates printer objects on the server using a php page with a session
+        // Updates printer objects on the server using a php page with a session
         function updatePrinters() {
             var url = "cart_data.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
 
@@ -258,7 +240,7 @@
             }
             xhttp.open("GET", url, true);
             xhttp.send();
-        }*/
+        }
 
         // Gets current cart data saved as session on php page
         function loadJSON() {
