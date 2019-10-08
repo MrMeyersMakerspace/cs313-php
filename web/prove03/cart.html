@@ -235,10 +235,10 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     //DO STUFF
-                    alert("Found siteData.php successfully!")
+                    alert("reached PHP to send data")
                 }
             }
-            xhttp.open("GET", "siteData.php", true);
+            xhttp.open("GET", url, true);
             xhttp.send();
         }
 
@@ -256,6 +256,7 @@
                     printers.cr10 = JSONData.cr10;
                     printers.cr10s = JSONData.cr10s;
                     printers.prusa = JSONData.prusa;
+                    alert("reached PHP to pull data");
                 }
             }
             xhttp.open("GET", "siteData.php", true);
