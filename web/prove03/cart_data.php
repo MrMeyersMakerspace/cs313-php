@@ -2,7 +2,9 @@
     //  Start the session
     session_start();
 
-	$_SESSION["Smini"]  = $_REQUEST["mini"];
+	$_SESSION["counter"] = $_SESSION["counter"] + 1;
+	echo $_SESSION["counter"];
+	/*$_SESSION["Smini"]  = $_REQUEST["mini"];
 	$_SESSION["Sender"] = $_REQUEST["ender"];
 	$_SESSION["Svoxel"] = $_REQUEST["voxel"];
 	$_SESSION["Scr10"]  = $_REQUEST["cr10"];
@@ -18,5 +20,5 @@
 			"prusa"	=>	$_SESSION["Sprusa"]		//1 	
 	);
 
-	echo json_encode($printerArray);
+	echo json_encode($printerArray);*/
 ?>
