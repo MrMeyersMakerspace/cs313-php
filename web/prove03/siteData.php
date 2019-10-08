@@ -18,5 +18,7 @@
 				"Aprusa"	=>	$_POST["prusa"]
 		);
 
-		echo $printerArray;
+		echo json_encode($printerArray);
+		echo $_POST["mini"];
+		echo $_POST[mini];
 ?>
