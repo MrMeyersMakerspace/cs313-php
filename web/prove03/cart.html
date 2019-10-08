@@ -266,6 +266,7 @@
         // Sets up page on load
         function onPageLoad() {
             // Changes quantity numbers to values from printer object
+            loadJSON();
             updateCart();
             document.getElementById("miniQuantity").value = printers.mini;
             document.getElementById("enderQuantity").value = printers.ender;
