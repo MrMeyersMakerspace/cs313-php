@@ -252,12 +252,12 @@
                     document.getElementById("test").innerHTML = this.responseText;
                     var JSONData = JSON.parse(this.responseText);
                     console.log(JSONData);
-                    /*printers.mini = JSONData.mini;
+                    printers.mini = JSONData.mini;
                     printers.ender = JSONData.ender;
                     printers.voxel = JSONData.voxel;
                     printers.cr10 = JSONData.cr10;
                     printers.cr10s = JSONData.cr10s;
-                    printers.prusa = JSONData.prusa;*/
+                    printers.prusa = JSONData.prusa;
                     alert("reached PHP to pull data");
                 }
             }
