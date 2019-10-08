@@ -181,9 +181,7 @@
         // Gets current cart data saved as session on php page
         function loadJSON() {
             // Create GET url with proper query string
-            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
 
-            document.getElementById("description").innerHTML = url;
 
             // Update php page with new cart information
             var xhttp = new XMLHttpRequest();
@@ -193,7 +191,7 @@
                     alert("Reached php to get data");
                 }
             }
-            xhttp.open("GET", url, true);
+            xhttp.open("GET", "siteData.php", true);
             xhttp.send();
         }
     </script>
