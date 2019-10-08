@@ -250,6 +250,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     //DO STUFF
                     document.getElementById("test").innerHTML = this.responseText;
+                    console.log("this.responseText");
                     //var JSONData = JSON.parse(this.responseText);
                     //console.log(JSONData);
                     printers.mini = JSONData.mini;
