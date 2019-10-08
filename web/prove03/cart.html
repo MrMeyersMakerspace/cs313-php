@@ -226,9 +226,11 @@
             updatePrinters();
         }
 
+
+
         // Updates printer objects on the server using a php page with a session
         function updatePrinters() {
-            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
+            var url = "siteData.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa + '"';
 
             // Update php page with new cart information
             var xhttp = new XMLHttpRequest();
@@ -251,14 +253,14 @@
                     //DO STUFF
                     document.getElementById("test").innerHTML = this.responseText;
                     console.log(this.responseText);
-                    //var JSONData = JSON.parse(this.responseText);
-                    //console.log(JSONData);
-                    //printers.mini = JSONData.mini;
-                    //printers.ender = JSONData.ender;
-                    //printers.voxel = JSONData.voxel;
-                    //printers.cr10 = JSONData.cr10;
-                    //printers.cr10s = JSONData.cr10s;
-                    //printers.prusa = JSONData.prusa;
+                    var JSONData = JSON.parse(this.responseText);
+                    console.log(JSONData);
+                    printers.mini = JSONData.mini;
+                    printers.ender = JSONData.ender;
+                    printers.voxel = JSONData.voxel;
+                    printers.cr10 = JSONData.cr10;
+                    printers.cr10s = JSONData.cr10s;
+                    printers.prusa = JSONData.prusa;
                     alert("reached PHP to pull data");
                 }
             }
