@@ -18,6 +18,13 @@
 	var_dump($_SESSION);
 	echo "<br>";*/
 
+	settype($_SESSION["mini"], "integer");
+	settype($_SESSION["ender"], "integer");
+	settype($_SESSION["voxel"], "integer");
+	settype($_SESSION["cr10"], "integer");
+	settype($_SESSION["cr10s"], "integer");
+	settype($_SESSION["prusa"], "integer");
+					
 	$printerArray = array(
 			"mini"	=>	$_SESSION["mini"],	
 			"ender"	=>	$_SESSION["ender"],	
