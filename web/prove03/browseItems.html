@@ -6,7 +6,7 @@
     <title>3D Printer Store</title>
     <link rel="stylesheet" type="text/css" href="prove03.css" />
 </head>
-<body>
+<body onload="loadJSON()">
     <div class="header">
         <div>
             <a href="browseItems.html" id="pageName">3D Printer Store</a>
@@ -92,7 +92,7 @@
         function addMini() {
             var numMini = document.getElementById("miniQuantity").value;
             if (numMini > 0) {
-                printers.mini += parseInt(numMini);
+                printers.mini = parseInt(printers.mini) + parseInt(numMini);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -103,7 +103,7 @@
         function addEnder() {
             var numEnder = document.getElementById("enderQuantity").value;
             if (numEnder > 0) {
-                printers.ender += parseInt(numEnder);
+                printers.ender = parseInt(printers.ender) + parseInt(numEnder);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -114,7 +114,7 @@
         function addVoxel() {
             var numVoxel = document.getElementById("voxelQuantity").value;
             if (numVoxel > 0) {
-                printers.voxel += parseInt(numVoxel);
+                printers.voxel = parseInt(printers.voxel) + parseInt(numVoxel);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -125,7 +125,7 @@
         function addCR10() {
             var numCR10 = document.getElementById("cr10Quantity").value;
             if (numCR10 > 0) {
-                printers.cr10 += parseInt(numCR10);
+                printers.cr10 = parseInt(printers.cr10) + parseInt(numCR10);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -136,7 +136,7 @@
         function addCR10S() {
             var numCR10S = document.getElementById("cr10sQuantity").value;
             if (numCR10S > 0) {
-                printers.cr10s += parseInt(numCR10S);
+                printers.cr10s = parseInt(printers.cr10s) + parseInt(numCR10S);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -147,7 +147,7 @@
         function addPrusa() {
             var numPrusa = document.getElementById("prusaQuantity").value;
             if (numPrusa > 0) {
-                printers.prusa += parseInt(numPrusa);
+                printers.prusa = parseInt(printers.prusa) + parseInt(numPrusa);
                 updateCart();
             } else {
                 alert("Please select a number to add to the cart");
@@ -156,7 +156,7 @@
 
         // Updates the cart based off what is in the printers object and makes sure amount is visible
         function updateCart() {
-            var totalItems = printers.mini + printers.ender + printers.voxel + printers.cr10 + printers.cr10s + printers.prusa;
+            var totalItems = parseInt(printers.mini) + parseInt(printers.ender) + parseInt(printers.voxel) + parseInt(printers.cr10) + parseInt(printers.cr10s) + parseInt(printers.prusa);
             document.getElementById("items").innerHTML = totalItems;
             document.getElementById("items").style.display = "inline";
             updatePrinters();
@@ -166,14 +166,13 @@
         function updatePrinters() {
             var url = "cart_data.php?mini=" + printers.mini + "&ender=" + printers.ender + "&voxel=" + printers.voxel + "&cr10=" + printers.cr10 + "&cr10s=" + printers.cr10s + "&prusa=" + printers.prusa;
 
-            document.getElementById("description").innerHTML = url;
+            //document.getElementById("description").innerHTML = url;
 
             // Update php page with new cart information
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     //DO STUFF
-                    alert("reached PHP to send data");
                 }
             }
             xhttp.open("GET", url, true);
@@ -182,20 +181,29 @@
 
         // Gets current cart data saved as session on php page
         function loadJSON() {
-            // Create GET url with proper query string
 
-
-            // Update php page with new cart information
+            // Get current cart data
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    //DO STUFF
-                    document.getElementById("test").innerHTML = this.responseText;
-                    alert("Reached php to get data");
+                    // Update printers variable with server cart data
+                    var JSONData = JSON.parse(this.responseText);
+                    console.log(JSONData);
+                    printers.mini = JSONData.mini;
+                    printers.ender = JSONData.ender;
+                    printers.voxel = JSONData.voxel;
+                    printers.cr10 = JSONData.cr10;
+                    printers.cr10s = JSONData.cr10s;
+                    printers.prusa = JSONData.prusa;
+                    updatePrinters();
                 }
             }
             xhttp.open("GET", "cart_data.php", true);
             xhttp.send();
+        }
+
+        function onPageLoad() {
+            loadJSON();
         }
     </script>
 </body>

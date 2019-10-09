@@ -6,13 +6,13 @@
     <title>3D Printer Store</title>
     <link rel="stylesheet" type="text/css" href="prove03.css" />
 </head>
-<body onload="onPageLoad()">
+<body onload="loadJSON()">
     <div class="header">
         <div>
-            <a href="browseItems.html" id="pageName">3D Printer Store</a>
+            <a href="browseItems.html" id="pageName" onclick="updateCart()">3D Printer Store</a>
         </div>
         <div class="header-right">
-            <a href="browseItems.html">Browse Items</a>
+            <a href="browseItems.html" onclick="updateCart()">Browse Items</a>
             <a class="active" href="cart.html">Cart <span id="items"></span></a>
         </div>
     </div>
@@ -20,6 +20,7 @@
     <h1>Shopping Cart</h1>
 
     <div id="test"></div>
+    <div id="test2"></div>
 
     <div id="shoppingCart">
         <div id="miniCart" class="cartItem">
@@ -113,19 +114,20 @@
         </div>
     </div>
 
-
-
+    <div style="text-align: center;">
+        <button id="checkoutBtn" onclick="checkout()">Checkout</button>
+    </div>
 
     <!-- JAVASCRIPT -->
     <script>
         // Printer object to track number of printers
         var printers = {
-            mini: 1,
-            ender: 1,
-            voxel: 1,
-            cr10: 1,
-            cr10s: 1,
-            prusa: 1
+            mini: 0,
+            ender: 0,
+            voxel: 0,
+            cr10: 0,
+            cr10s: 0,
+            prusa: 0
         };
 
         // Removes the item from the cart
@@ -220,7 +222,7 @@
 
         // Updates the cart based off what is in the printers object and makes sure amount is visible
         function updateCart() {
-            var totalItems = printers.mini + printers.ender + printers.voxel + printers.cr10 + printers.cr10s + printers.prusa;
+            var totalItems = parseInt(printers.mini) + parseInt(printers.ender) + parseInt(printers.voxel) + parseInt(printers.cr10) + parseInt(printers.cr10s) + parseInt(printers.prusa);
             document.getElementById("items").innerHTML = totalItems;
             document.getElementById("items").style.display = "inline";
             updatePrinters();
@@ -235,7 +237,6 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     //DO STUFF
-                    alert("reached PHP to send data")
                 }
             }
             xhttp.open("GET", url, true);
@@ -249,34 +250,60 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     //DO STUFF
-                    document.getElementById("test").innerHTML = this.responseText;
                     console.log(this.responseText);
                     var JSONData = JSON.parse(this.responseText);
                     console.log(JSONData);
-                    printers.mini = JSONData.mini;
-                    printers.ender = JSONData.ender;
-                    printers.voxel = JSONData.voxel;
-                    printers.cr10 = JSONData.cr10;
-                    printers.cr10s = JSONData.cr10s;
-                    printers.prusa = JSONData.prusa;
-                    alert("reached PHP to pull data");
+
+                    // Set number values for cart to current amounts
+                    document.getElementById("miniQuantity").value = JSONData.mini;
+                    document.getElementById("enderQuantity").value = JSONData.ender;
+                    document.getElementById("voxelQuantity").value = JSONData.voxel;
+                    document.getElementById("cr10Quantity").value = JSONData.cr10;
+                    document.getElementById("cr10sQuantity").value = JSONData.cr10s;
+                    document.getElementById("prusaQuantity").value = JSONData.prusa;
+                    console.log(printers);
+
+                    // Set printers object value to saved cart values
+                    printers.mini   =   parseInt(JSONData.mini);
+                    printers.ender  =   parseInt(JSONData.ender);
+                    printers.voxel  =   parseInt(JSONData.voxel);
+                    printers.cr10   =   parseInt(JSONData.cr10);
+                    printers.cr10s  =   parseInt(JSONData.cr10s);
+                    printers.prusa  =   parseInt(JSONData.prusa);
+                    console.log(printers);
+
+                    // Hide cart items that are equal to zero
+                    if (JSONData.mini == 0) {
+                        document.getElementById("miniCart").style.display = "none";
+                    }
+                    if (JSONData.ender == 0) {
+                        document.getElementById("enderCart").style.display = "none";
+                    }
+                    if (JSONData.voxel == 0) {
+                        document.getElementById("voxelCart").style.display = "none";
+                    }
+                    if (JSONData.cr10 == 0) {
+                        document.getElementById("cr10Cart").style.display = "none";
+                    }
+                    if (JSONData.cr10s == 0) {
+                        document.getElementById("cr10sCart").style.display = "none";
+                    }
+                    if (JSONData.prusa == 0) {
+                        document.getElementById("prusaCart").style.display = "none";
+                    }
+
+                    // Update cart to current value
+                    var totalItems = parseInt(JSONData.mini) + parseInt(JSONData.ender) + parseInt(JSONData.voxel) + parseInt(JSONData.cr10) + parseInt(JSONData.cr10s) + parseInt(JSONData.prusa);
+                    document.getElementById("items").innerHTML = totalItems;
+                    document.getElementById("items").style.display = "inline";
                 }
             }
             xhttp.open("GET", "cart_data.php", true);
             xhttp.send();
         }
 
-        // Sets up page on load
-        function onPageLoad() {
-            // Changes quantity numbers to values from printer object
-            loadJSON();
-            updateCart();
-            document.getElementById("miniQuantity").value = printers.mini;
-            document.getElementById("enderQuantity").value = printers.ender;
-            document.getElementById("voxelQuantity").value = printers.voxel;
-            document.getElementById("cr10Quantity").value = printers.cr10;
-            document.getElementById("cr10sQuantity").value = printers.cr10s;
-            document.getElementById("prusaQuantity").value = printers.prusa;
+        function checkout() {
+            window.location.href = "checkout.html";
         }
     </script>
 </body>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Printer Store</title>
+    <link rel="stylesheet" type="text/css" href="prove03.css" />
+</head>
+<body onload="loadJSON()">
+    <div class="header">
+        <div>
+            <a href="browseItems.html" id="pageName" onclick="updateCart()">3D Printer Store</a>
+        </div>
+        <div class="header-right">
+            <a href="browseItems.html" onclick="updateCart()">Browse Items</a>
+            <a href="cart.html">Cart <span id="items"></span></a>
+        </div>
+    </div>
+
+    <h1>Checkout</h1>
+
+    <div id="description">Please enter your address below to finish your order and then hit "Submit Order" to submit your order.</div>
+    
+    <form name="orderForm" action="confirmation.php" method="post" onreset="resetForm()">
+        <br />
+        Street Address: <textarea rows="1" cols="40" id="street" name="street" placeholder="742 Evergreen Terrace" required></textarea><br /><br />
+        City: <input type="text" id="city" name="city" placeholder="Springfield" required/><br /><br />
+        State: <input type="text" id="state" name="state" placeholder="Oregon" required/><br /><br />
+        Zip Code: <input type="text" id="zip" name="zip" placeholder="97477" required/><br /><br />
+
+        <button type="reset" id="formReset" name="reset">Reset Form</button>
+        <button type="submit" id="validate" name="validate">Submit Order</button>
+    </form>
+    
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Resets focus on the first item of the form when the form is reset
+        function resetForm() {
+            document.getElementById("street").focus();
+        }
+
+        // Gets current cart data saved as session on php page
+        function loadJSON() {
+            // Update php page with new cart information
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //DO STUFF
+                    console.log(this.responseText);
+                    var JSONData = JSON.parse(this.responseText);
+                    console.log(JSONData);
+
+                    // Update cart to current value
+                    var totalItems = parseInt(JSONData.mini) + parseInt(JSONData.ender) + parseInt(JSONData.voxel) + parseInt(JSONData.cr10) + parseInt(JSONData.cr10s) + parseInt(JSONData.prusa);
+                    document.getElementById("items").innerHTML = totalItems;
+                    document.getElementById("items").style.display = "inline";
+                }
+            }
+            xhttp.open("GET", "cart_data.php", true);
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>

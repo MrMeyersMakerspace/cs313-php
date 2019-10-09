@@ -11,11 +11,12 @@
 	$_SESSION["prusa"] = $_GET["prusa"];
 	}
 
-	echo "<br>";
+	// Testing variable output
+	/*echo "<br>";
 	var_dump($_REQUEST);
 	echo "<br>";
 	var_dump($_SESSION);
-	echo "<br>";
+	echo "<br>";*/
 
 	$printerArray = array(
 			"mini"	=>	$_SESSION["mini"],	
