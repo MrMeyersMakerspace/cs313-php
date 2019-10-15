@@ -51,6 +51,7 @@ CREATE TABLE public.filament_spool
 	printer_id INT NOT NULL REFERENCES public.printer(id),
 	print_time TIME NOT NULL,
 	date TIMESTAMP NOT NULL,
+	user_id INT NOT NULL REFERENCES public.user(id),
 	completed BOOLEAN NOT NULL,
 	percent_at_failure INT
 );
