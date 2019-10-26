@@ -35,6 +35,44 @@
 
             <h1>View Current Spools</h1>
            
+			<?php
+			try
+			{
+				$dbUrl = getenv('DATABASE_URL');
+
+				$dbOpts = parse_url($dbUrl);
+
+				$dbHost = $dbOpts["host"];
+				$dbPort = $dbOpts["port"];
+				$dbUser = $dbOpts["user"];
+				$dbPassword = $dbOpts["pass"];
+				$dbName = ltrim($dbOpts["path"],'/');
+
+				$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+
+				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			}
+			catch (PDOException $ex)
+			{
+				echo 'Error!: ' . $ex->getMessage();
+				die();
+			}
+
+			foreach ($db->query('SELECT name, filament_left, print_temp, bed_temp FROM filament_spool') as $row)
+			{
+				echo '<h3>' . $row['name'] . '</h3>';
+				echo '<ul>';
+				echo '<li>Amount of filament left: ' . $row['filament_left'] . ' grams</li>';
+				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
+				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
+				echo '<br/>';
+			}
+
+
+			?>
+
+
+
         </div>
         <footer>
             <div class="footer-center">
