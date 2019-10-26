@@ -35,6 +35,45 @@
 
             <h1>View Stored Print Jobs</h1>
 
+			<?php
+			try
+			{
+				$dbUrl = getenv('DATABASE_URL');
+
+				$dbOpts = parse_url($dbUrl);
+
+				$dbHost = $dbOpts["host"];
+				$dbPort = $dbOpts["port"];
+				$dbUser = $dbOpts["user"];
+				$dbPassword = $dbOpts["pass"];
+				$dbName = ltrim($dbOpts["path"],'/');
+
+				$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+
+				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			}
+			catch (PDOException $ex)
+			{
+				echo 'Error!: ' . $ex->getMessage();
+				die();
+			}
+
+			foreach ($db->query('SELECT name, filament_used, printer_id, print_time, date, user_id FROM print_job') as $row)
+			{
+				echo '<h3>Print job ' . $row['name'] . '</h3>';
+				echo '<ul>';
+				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
+				echo '<li>Printed on: ' . $row['printer_id'];
+				echo '<li>Print time: ' . $row['print_time'];
+				echo '<li>Printed on: ' . $row['date'];
+				echo '<li>Printed by: ' . $row['user_id'];
+				echo '</ul>';
+				echo '<br/>';
+			}
+
+
+			?>
+
         </div>
         <footer>
             <div class="footer-center">
