@@ -58,7 +58,7 @@
 				die();
 			}
 
-			foreach ($db->query('SELECT name, filament_used, printer_id, print_time, date, u.display_name FROM print_job pj INNER JOIN user u ON pj.user_id = u.id') as $row)
+			foreach ($db->query('SELECT name, filament_used, printer_id, print_time, date, user_id FROM print_job') as $row)
 			{
 				echo '<h3>Print job ' . $row['name'] . '</h3>';
 				echo '<ul>';
@@ -66,7 +66,7 @@
 				echo '<li>Printed on: ' . $row['printer_id'];
 				echo '<li>Print time: ' . $row['print_time'];
 				echo '<li>Printed on: ' . $row['date'];
-				echo '<li>Printed by: ' . $row['u.display_name'];
+				echo '<li>Printed by: ' . $row['user_id'];
 				echo '</ul>';
 				echo '<br/>';
 			}
