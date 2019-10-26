@@ -107,6 +107,11 @@ p {
     font-size: 18px;
 }
 
+h3 {
+	  margin-left: 15%;
+    margin-right: 15%;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -157,6 +162,11 @@ ul {
         margin-left: 5%;
         margin-right: 5%;
     }
+
+		h3 {
+			margin-left: 5%;
+			margin-right: 5%;
+		}
 
     ul {
         margin-left: 5%;
