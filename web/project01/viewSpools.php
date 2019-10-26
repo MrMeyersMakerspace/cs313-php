@@ -65,6 +65,7 @@
 				echo '<li>Amount of filament left: ' . $row['filament_left'] . ' grams</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
+				echo '</ul>';
 				echo '<br/>';
 			}
 
