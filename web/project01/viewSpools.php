@@ -39,8 +39,15 @@ $db = get_db();
 
             <h1>View Current Spools</h1>
            
+
             <?php
-			foreach ($db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)') as $row)
+            $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
+            $statement -> bindValue(':filamentType', $_GET['filamentType'], PDO::PARAM_STR);
+            $statement -> execute();
+            $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+
+
+			foreach ($rows as $row)
 			{
 				echo '<h3>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</h3>';
 				echo '<ul>';
@@ -51,6 +58,13 @@ $db = get_db();
 				echo '<br/>';
 			}
             ?>
+
+            <form>
+                Type of plastic:
+                <input type="text" name="plasticType" />
+                <br />
+                <input type="submit" value="Search" />
+            </form>
 						
         </div>
         <footer>
