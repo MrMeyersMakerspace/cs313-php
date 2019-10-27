@@ -64,11 +64,11 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Print Time: Hours <input type="number" name="hours" placeholder="0" min="0" required/> Minutes <input type="number" name="min" placeholder="0" min="0" max="59" required/><br />
+                Print Time: Hours <input type="number" name="hours" placeholder="0" min="0" max="500" required/> Minutes <input type="number" name="min" placeholder="0" min="0" max="59" required/><br />
                 User: 
                 <select name="user" required>
                     <?php
-                    $rows = $db->query('SELECT * FROM user');
+                    $rows = $db->query('SELECT * FROM users');
 
                     foreach ($rows as $row) {
                         echo "<option value='" . $row['id'] . "'>" . $row['display_name'] . "</option>";
