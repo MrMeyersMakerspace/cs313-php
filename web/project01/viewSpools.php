@@ -39,8 +39,9 @@ $db = get_db();
 
             <h1>View Current Spools</h1>
            
-			<?php
-			foreach ($db->query('SELECT name, filament_left, print_temp, bed_temp FROM filament_spool') as $row)
+            <?php
+            foreach ($db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)') as $row)
+			foreach ($db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)') as $row)
 			{
 				echo '<h3>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</h3>';
 				echo '<ul>';
@@ -50,7 +51,7 @@ $db = get_db();
 				echo '</ul>';
 				echo '<br/>';
 			}
-			?>
+            ?>
 						
         </div>
         <footer>
