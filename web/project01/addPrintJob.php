@@ -38,6 +38,55 @@ $db = get_db();
             </header>
 
             <h1>Add a New Print Job</h1>
+            <h2 style="text-align:center;">Please fill out the form below for the new print job!</h2>
+
+            <form action="submitPrintJob.php" method="POST">
+                Name: <input type="text" name="name" placeholder="Job Name" required/><br />
+                Spool Used: 
+                <select name="spool" required>
+
+                    <?php
+                    $rows = $db->query('SELECT * FROM filament_spool');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['name'] . " - " . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                Amount of Filament Used: <input type="number" name="amount" placeholder="0" min="0" required/><br />
+                Printer Used: 
+                <select name="printer" required>
+                    <?php
+                    $rows = $db->query('SELECT * FROM printer');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['printer_name'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                Print Time: Hours <input type="number" name="hours" placeholder="0" min="0" required/> Minutes <input type="number" name="min" placeholder="0" min="0" max="59" required/><br />
+                User: 
+                <select name="user" required>
+                    <?php
+                    $rows = $db->query('SELECT * FROM user');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['display_name'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                Check if print job failed <input type="checkbox" id="failed" value="true" onclick="makeRequired()"/>  
+                If print failed, enter the estimated percent it failed at: <input type="number" name="min" placeholder="0" min="0" max="99"/><br />
+
+
+
+
+
+
+
+
+                <input type="submit" value="Submit Print Job"/>
+            </form>
 
         </div>
         <footer>
@@ -58,14 +107,23 @@ $db = get_db();
 
     <script>
     // Shows navigation bar list when icon clicked
-function navigationBar() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+        function navigationBar() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        // Makes the percentage input required if the checkbox for failure is checked
+        function makeRequired() {
+            if (document.getElementById("failed").checked = true) {
+                document.getElementById("percent").required = true;
+            } else {
+                document.getElementById("percent").required = false;
+            }
+        }
     </script>
 </body>
 </html>
