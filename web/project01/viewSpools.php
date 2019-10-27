@@ -39,6 +39,7 @@ $db = get_db();
 
             <h1>View Current Spools</h1>
 
+            <h3>Search by plastic type, color of filament, or display all available spools!</h3>
             <form>
                 Type of Plastic:
                 <select name="plasticType">
@@ -48,14 +49,21 @@ $db = get_db();
                     <option value="TPU">TPU</option>
                 </select>
                 <br />
-                <input type="submit" value="Search" />
+                <input type="submit" value="Search by Plastic Type" />
             </form>
 
             <form>
                 Color:
                 <input type="text" name="color" />
                 <br />
-                <input type="submit" value="Search" />
+                <input type="submit" value="Search by Color" />
+            </form>
+            <br />
+
+            <form>
+                <input type="hidden" name="showAll" value="displayAll"/>
+                <br />
+                <input type="submit" value="Display All" />
             </form>
 
             <?php
@@ -69,6 +77,13 @@ $db = get_db();
 
             if (isset($_GET['color'])) {
                 $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE color = :color');
+                $statement -> bindValue(':color', $_GET['color'], PDO::PARAM_STR);
+                $statement -> execute();
+                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            if (isset($_GET['showAll'])) {
+                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
                 $statement -> bindValue(':color', $_GET['color'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
