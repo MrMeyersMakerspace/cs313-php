@@ -41,7 +41,7 @@ $db = get_db();
             <h2 style="text-align:center;">Please enter the data below for a new spool of filament to add it to the database!</h2>
 
             <form>
-                Name: <input type="text" value="name" /><br />
+                Name: <input type="text" name="name" /><br />
                 Manufacturer: 
                 <select name="manufacturer">
 
@@ -52,8 +52,29 @@ $db = get_db();
                         echo "<option value='" . $row['company'] . "'>" . $row['company'] . "</option>";
                     }
                     ?>
+                </select><br />
+                Color: <input type="text" name="color" /><br />
+                Type of Plastic: 
+                <select name="plasticType">
+                    <?php
+                    $rows = $db->query('SELECT * FROM filament_type');
 
-                </select>
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['type_of_plastic'] . "'>" . $row['type_of_plastic'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                Size of Spool: 
+                <select name="size">
+                    <option value="1000">1000 grams</option>
+                    <option value="750">750 grams</option>
+                    <option value="500">500 grams</option>
+                    <option value="250">250 grams</option>
+                </select><br />
+                Print Temp: <input type="number" name="printTemp" /><br />
+                Bed Temp: <input type="number" name="bedTemp" /><br />
+                Cost: <input type="number" name="cost" /><br />
+                Notes: <textarea name="notes" /><br />
                 <input type="submit" value="Submit Spool" />
             </form>
         </div>
