@@ -41,7 +41,7 @@ $db = get_db();
             <h2 style="text-align:center;">Search print jobs by user, 3D printer, or display them all!</h2>
             <form>
                 User:
-                <select name="user">
+                <select name="printer">
                     <option value="Maker Meyers">Maker Meyers</option>
                     <option value="Miss Missy">Miss Missy</option>
                 </select>
@@ -71,9 +71,9 @@ $db = get_db();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
             }
 
-            if (isset($_GET['user'])) {
-                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE display_name = :user');
-                $statement -> bindValue(':user', $_GET['user'], PDO::PARAM_STR);
+            if (isset($_GET['printer'])) {
+                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE printer_name = :printer');
+                $statement -> bindValue(':printer', $_GET['printer'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
             }
