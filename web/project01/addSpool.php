@@ -74,7 +74,7 @@ $db = get_db();
                 Print Temp: <input type="number" name="printTemp" /><br />
                 Bed Temp: <input type="number" name="bedTemp" /><br />
                 Cost: <input type="number" name="cost" /><br />
-                Notes: <textarea rows="4" cols="50" name="notes" id="textBox" onfocus="removeText()">Enter any extra notes here.</textarea><br />
+                Notes: <textarea rows="4" cols="50" placeholder="0.00" min="0" step="0.01" title="currency" name="notes" id="textBox" onfocus="removeText()">Enter any extra notes here.</textarea><br />
                 <input type="submit" value="Submit Spool"/>
             </form>
         </div>
