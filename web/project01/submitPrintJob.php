@@ -37,7 +37,7 @@ try
 {
 
 
-    $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percentFailed, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :failed, :percentFailed, :time)';
+    $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :failed, :percentFailed, :time)';
     $statement = $db->prepare($query);
 
     $statement->bindValue(':name', $name);
