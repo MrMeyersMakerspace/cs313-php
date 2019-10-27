@@ -71,9 +71,7 @@
 
 
 			?>
-
-
-
+						
         </div>
         <footer>
             <div class="footer-center">
