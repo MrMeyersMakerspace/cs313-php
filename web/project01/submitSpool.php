@@ -3,18 +3,29 @@
 require("dbConnect.php");
 $db = get_db();
 
+$name = $_POST['name'];
+$manufacturer = $_POST['manufacturer'];
+$color = $_POST['color'];
+$plasticType = $_POST['plasticType'];
+$size = $_POST['size'];
+$printTemp = $_POST['printTemp'];
+$bedTemp = $_POST['bedTemp'];
+$cost = $_POST['cost'];
+$notes = $_POST['notes'];
+
+echo $name;
+echo $manufacturer;
+echo $color;
+echo $plasticType;
+echo $size;
+echo $printTemp;
+echo $bedTemp;
+echo $cost;
+echo $notes;
 
 try
 {
-    $name = $_POST[':name'];
-    $manufacturer = $_POST[':manufacturer'];
-    $color = $_POST[':color'];
-    $plasticType = $_POST[':plasticType'];
-    $size = $_POST[':size'];
-    $printTemp = $_POST[':printTemp'];
-    $bedTemp = $_POST[':bedTemp'];
-    $cost = $_POST[':cost'];
-    $notes = $_POST[':notes'];
+
 
     $query = 'INSERT INTO filament_spool (name, manufacturer_id, color, filament_id, filament_amount_new, print_temp, bed_temp, cost, notes, empty) VALUES (:name, :manufacturer, :color, :plasticType, :size, :printTemp, :bedTemp, :cost, :notes, false)';
     $statement = $db->prepare($query);
