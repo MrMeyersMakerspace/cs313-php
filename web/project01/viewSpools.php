@@ -86,9 +86,9 @@ $db = get_db();
 			foreach ($rows as $row)
 			{
                 echo '<h3>"' . $row['name'] . '"</h3>';
-				echo '<h3>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</h3>';
 				echo '<ul>';
-				echo '<li>Amount of filament left: ' . $row['filament_left'] . ' grams</li>';
+                echo '<li>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</li>';
+				echo '<li>' . $row['filament_left'] . ' grams left</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
 				echo '</ul>';
