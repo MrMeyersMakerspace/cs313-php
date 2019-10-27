@@ -1,4 +1,8 @@
-
+<?php
+// Connect to database on startup
+require("dbConnect.php");
+$db = get_db();
+?>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,28 +40,6 @@
             <h1>View Current Spools</h1>
            
 			<?php
-			try
-			{
-				$dbUrl = getenv('DATABASE_URL');
-
-				$dbOpts = parse_url($dbUrl);
-
-				$dbHost = $dbOpts["host"];
-				$dbPort = $dbOpts["port"];
-				$dbUser = $dbOpts["user"];
-				$dbPassword = $dbOpts["pass"];
-				$dbName = ltrim($dbOpts["path"],'/');
-
-				$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-
-				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			}
-			catch (PDOException $ex)
-			{
-				echo 'Error!: ' . $ex->getMessage();
-				die();
-			}
-
 			foreach ($db->query('SELECT name, filament_left, print_temp, bed_temp FROM filament_spool') as $row)
 			{
 				echo '<h3>' . $row['name'] . '</h3>';
@@ -68,8 +50,6 @@
 				echo '</ul>';
 				echo '<br/>';
 			}
-
-
 			?>
 						
         </div>
