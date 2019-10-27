@@ -38,12 +38,21 @@ $db = get_db();
             </header>
 
             <h1>View Stored Print Jobs</h1>
-            <h2 style="text-align:center;">Search print jobs by user or display them all!</h2>
+            <h2 style="text-align:center;">Search print jobs by user, 3D printer, or display them all!</h2>
             <form>
                 User:
                 <select name="user">
                     <option value="Maker Meyers">Maker Meyers</option>
                     <option value="Miss Missy">Miss Missy</option>
+                </select>
+                <br />
+                <input type="submit" value="Search by User" />
+            </form>
+            <form>
+                Printer:
+                <select name="user">
+                    <option value="Steel">Steel</option>
+                    <option value="Brass">Brass</option>
                 </select>
                 <br />
                 <input type="submit" value="Search by User" />
@@ -55,6 +64,13 @@ $db = get_db();
             </form>
 
             <?php
+            if (isset($_GET['user'])) {
+                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE display_name = :user');
+                $statement -> bindValue(':user', $_GET['user'], PDO::PARAM_STR);
+                $statement -> execute();
+                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+            }
+
             if (isset($_GET['user'])) {
                 $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE display_name = :user');
                 $statement -> bindValue(':user', $_GET['user'], PDO::PARAM_STR);
