@@ -41,13 +41,14 @@ $db = get_db();
            
 
             <form>
-            <label>Type of Plastic:</label>
-            <select name="plasticType">
-                <option value="PLA">PLA</option>
-                <option value="PETG">PETG</option>
-                <option value="ABS">ABS</option>
-                <option value="TPU">TPU</option>
-            </select>
+                <label>Type of Plastic:</label>
+                <input list="plasticType" />
+                <datalist id="plasticType">
+                    <option value="PLA">
+                    <option value="PETG">
+                    <option value="ABS">
+                    <option value="TPU">
+                </datalist>
                 <br />
                 <input type="submit" value="Search" />
             </form>
