@@ -38,24 +38,24 @@ $db = get_db();
             </header>
 
             <h1>View Current Spools</h1>
-           
 
             <form>
-                Type of plastic:
-                <input type="text" name="plasticType" />
+                Type of Plastic:
+                <select name="plasticType">
+                    <option value="PLA">PLA</option>
+                    <option value="PETG">PETG</option>
+                    <option value="ABS">ABS</option>
+                    <option value="TPU">TPU</option>
+                </select>
                 <br />
                 <input type="submit" value="Search" />
             </form>
 
+
             <?php
-            //            <form>
-            //    <label>Type of Plastic:</label>
-            //    <select name="plasticType">
-            //        <option value="PLA">PLA</option>
-            //        <option value="PETG">PETG</option>
-            //        <option value="ABS">ABS</option>
-            //        <option value="TPU">TPU</option>
-            //    </select>
+            //<form>
+            //    Type of plastic:
+            //    <input type="text" name="plasticType" />
             //    <br />
             //    <input type="submit" value="Search" />
             //</form>
