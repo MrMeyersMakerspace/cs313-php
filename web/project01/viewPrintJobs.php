@@ -1,4 +1,8 @@
-
+<?php
+// Connect to database on startup
+require("dbConnect.php");
+$db = get_db();
+?>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,23 +40,9 @@
             <h1>View Stored Print Jobs</h1>
 
             <?php
-			try
-			{
-				$dbUrl = getenv('DATABASE_URL');
-				$dbOpts = parse_url($dbUrl);
-				$dbHost = $dbOpts["host"];
-				$dbPort = $dbOpts["port"];
-				$dbUser = $dbOpts["user"];
-				$dbPassword = $dbOpts["pass"];
-				$dbName = ltrim($dbOpts["path"],'/');
-				$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			}
-			catch (PDOException $ex)
-			{
-				echo 'Error!: ' . $ex->getMessage();
-				die();
-			}
+
+
+
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
 			foreach ($db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)') as $row)
 			{
