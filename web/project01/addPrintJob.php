@@ -83,9 +83,14 @@ $db = get_db();
                     ?>
                 </select><br />
                 
-                Check if print job failed <input type="checkbox" id="failed" name="failed" onclick="makeRequired()"/><br />
+                Did print job complete? 
+                <select name="completed" required>
+                    <option disabled selected> -- select an option -- </option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select><br />
                 
-                If print failed, enter the estimated percent it failed at: <input type="number" id="percentFailed" name="percentFailed" placeholder="0" min="0" max="99"/><br />
+                If the print failed, enter the estimated percent it failed at: <input type="number" id="percentFailed" name="percentFailed" value="100" min="0" max="99"/><br />
 
                 <input type="submit" value="Submit Print Job"/>
             </form>

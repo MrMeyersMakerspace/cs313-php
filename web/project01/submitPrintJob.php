@@ -3,24 +3,16 @@
 require("dbConnect.php");
 $db = get_db();
 
-$name       = $_POST['name'];
-$spool      = $_POST['spool'];
-$amount     = $_POST['amount'];
-$printer    = $_POST['printer'];
-$hours      = $_POST['hours'];
-$min        = $_POST['min'];
-$user       = $_POST['user'];
-if (isset($_POST['failed'])) {
-    $failed = false;
-} else {
-    $failed = true;
-}
-if (isset($_POST['percentFailed'])) {
-    $percentFailed = $_POST['percentFailed'];
-} else {
-    $percentFailed = 100;
-}
-$time = date('Y-m-d H:i:s');
+$name           = $_POST['name'];
+$spool          = $_POST['spool'];
+$amount         = $_POST['amount'];
+$printer        = $_POST['printer'];
+$hours          = $_POST['hours'];
+$min            = $_POST['min'];
+$user           = $_POST['user'];
+$completed      = $_POST['completed'];
+$percentFailed  = $_POST['percentFailed'];
+$time           = date('Y-m-d H:i:s');
 
 echo "name          = $name\n";
 echo "spool         = $spool\n";
@@ -29,7 +21,7 @@ echo "printer       = $printer\n";
 echo "hours         = $hours\n";
 echo "min           = $min\n";
 echo "user          = $user\n";
-echo "failed        = $failed\n";
+echo "completed     = $completed\n";
 echo "percentFailed = $percentFailed\n";
 echo "time          = $time\n";
 
@@ -38,7 +30,7 @@ try
 {
 
 
-    $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :failed, :percentFailed, :time)';
+    $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :completed, :percentFailed, :time)';
     $statement = $db->prepare($query);
 
     $statement->bindValue(':name', $name);
@@ -48,7 +40,7 @@ try
     $statement->bindValue(':hours', $hours);
     $statement->bindValue(':min', $min);
     $statement->bindValue(':user', $user);
-    $statement->bindValue(':failed', $failed);
+    $statement->bindValue(':completed', $completed);
     $statement->bindValue(':percentFailed', $percentFailed);
     $statement->bindValue(':time', $time);
     $statement->execute();
