@@ -56,7 +56,7 @@
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
 			foreach ($db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)') as $row)
 			{
-				echo '<h3>Print job ' . $row['name'] . '</h3>';
+				echo '<h3>Print job - ' . $row['name'] . '</h3>';
 				echo '<ul>';
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
 				echo '<li>Printed on: ' . $row['printer_name'];
