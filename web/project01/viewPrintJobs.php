@@ -53,7 +53,7 @@
 				echo 'Error!: ' . $ex->getMessage();
 				die();
 			}
-			foreach ($db->query('SELECT name, filament_used, printer_id, print_time, date, u.display_name FROM print_job pj INNER JOIN users u ON pj.user_id = u.user_id') as $row)
+			foreach ($db->query('SELECT * FROM print_job pj INNER JOIN users u ON pj.user_id = u.user_id') as $row)
 			{
 				echo '<h3>Print job ' . $row['name'] . '</h3>';
 				echo '<ul>';
