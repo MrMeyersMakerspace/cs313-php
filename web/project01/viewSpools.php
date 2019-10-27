@@ -40,22 +40,21 @@ $db = get_db();
             <h1>View Current Spools</h1>
            
 
-            <form method="get">
+            <form>
                 <label>Type of Plastic:</label>
-                <input list="plasticType" />
-                <datalist id="plasticType">
-                    <option value="PLA">
-                    <option value="PETG">
-                    <option value="ABS">
-                    <option value="TPU">
-                </datalist>
+                <select name="plasticType">
+                    <option value="PLA">PLA</option>
+                    <option value="PETG">PETG</option>
+                    <option value="ABS">ABS</option>
+                    <option value="TPU">TPU</option>
+                </select>
                 <br />
                 <input type="submit" value="Search" />
             </form>
 
             <?php
             $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
-            $statement -> bindValue(':plasticType', $_GET['plasticType'], PDO::PARAM_STR);
+            $statement -> bindValue(':plasticType', $_POST['plasticType'], PDO::PARAM_STR);
             $statement -> execute();
             $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
 
