@@ -15,7 +15,7 @@ if (isset($_POST['failed'])) {
 } else {
     $failed = true;
 }
-if (isset($_POST["percentFailed"])) {
+if (isset($_POST['percentFailed'])) {
     $percentFailed = $_POST['percentFailed'];
 } else {
     $percentFailed = 100;
