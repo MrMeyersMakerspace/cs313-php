@@ -61,7 +61,7 @@ $db = get_db();
             //</form>
 
             $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
-            $statement -> bindValue(':plasticType', $_POST['plasticType'], PDO::PARAM_STR);
+            $statement -> bindValue(':plasticType', $_GET['plasticType'], PDO::PARAM_STR);
             $statement -> execute();
             $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
 
