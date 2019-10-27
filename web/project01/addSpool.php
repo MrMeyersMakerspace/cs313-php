@@ -71,9 +71,9 @@ $db = get_db();
                     <option value="500">500 grams</option>
                     <option value="250">250 grams</option>
                 </select><br />
-                Print Temp: <input type="number" name="printTemp" /><br />
-                Bed Temp: <input type="number" name="bedTemp" /><br />
-                Cost: <input type="number" name="cost" placeholder="0.00" min="0" step="0.01" title="currency"/><br />
+                Print Temp: <input type="number" name="printTemp" placeholder="0" min="150"/><br />
+                Bed Temp: <input type="number" name="bedTemp" placeholder="0" min="0"/><br />
+                Cost: <input type="number" name="cost" placeholder="0.00" min="0" step="0.01"/><br />
                 Notes: <textarea rows="4" cols="50" name="notes" id="textBox" onfocus="removeText()">Enter any extra notes here.</textarea><br />
                 <input type="submit" value="Submit Spool"/>
             </form>
