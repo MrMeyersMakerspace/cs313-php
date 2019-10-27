@@ -38,13 +38,7 @@ $db = get_db();
             </header>
 
             <h1>View Current Spools</h1>
-           
-            <form>
-                Type of plastic:
-                <input type="text" name="plasticType" />
-                <br />
-                <input type="submit" value="Search" />
-            </form>
+   
 
             <?php
             $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
@@ -66,8 +60,15 @@ $db = get_db();
             ?>
 
 
+
 						
         </div>
+        <form>
+            Type of plastic:
+            <input type="text" name="plasticType" />
+            <br />
+            <input type="submit" value="Search" />
+        </form>
         <footer>
             <div class="footer-center">
                 ©<?php
