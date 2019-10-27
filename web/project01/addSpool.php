@@ -41,9 +41,9 @@ $db = get_db();
             <h2 style="text-align:center;">Please enter the data below for a new spool of filament to add it to the database!</h2>
 
             <form>
-                Name: <input type="text" name="name" placeholder="Spool Name"/><br />
+                Name: <input type="text" name="name" placeholder="Spool Name" required/><br />
                 Manufacturer: 
-                <select name="manufacturer">
+                <select name="manufacturer" required>
 
                     <?php
                     $rows = $db->query('SELECT * FROM filament_manufacturer');
@@ -53,9 +53,9 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Color: <input type="text" name="color" placeholder="Filament Color"/><br />
+                Color: <input type="text" name="color" placeholder="Filament Color" required/><br />
                 Type of Plastic: 
-                <select name="plasticType">
+                <select name="plasticType" required>
                     <?php
                     $rows = $db->query('SELECT * FROM filament_type');
 
@@ -65,15 +65,15 @@ $db = get_db();
                     ?>
                 </select><br />
                 Size of Spool: 
-                <select name="size">
+                <select name="size" required>
                     <option value="1000">1000 grams</option>
                     <option value="750">750 grams</option>
                     <option value="500">500 grams</option>
                     <option value="250">250 grams</option>
                 </select><br />
-                Print Temp: <input type="number" name="printTemp" placeholder="0" min="150"/><br />
-                Bed Temp: <input type="number" name="bedTemp" placeholder="0" min="0"/><br />
-                Cost: <input type="number" name="cost" placeholder="0.00" min="0" step="0.01"/><br />
+                Print Temp: <input type="number" name="printTemp" placeholder="0" min="150" required/><br />
+                Bed Temp: <input type="number" name="bedTemp" placeholder="0" min="0" required/><br />
+                Cost: <input type="number" name="cost" placeholder="0.00" min="0" step="0.01" required/><br />
                 Notes: <textarea rows="4" cols="50" name="notes" id="textBox" onfocus="removeText()">Enter any extra notes here.</textarea><br />
                 <input type="submit" value="Submit Spool"/>
             </form>
