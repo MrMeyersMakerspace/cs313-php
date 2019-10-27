@@ -16,7 +16,7 @@ try
     $cost = $_POST[':cost'];
     $notes = $_POST[':notes'];
 
-    $query = 'INSERT INTO filament_spool (name, manufacturer_id, color, filament_id, filament_amount_new, print_temp, bed_temp, cost, notes, empty) VALUES (:name, :manufacturer, :color, :plasticType, :size, :printTemp, :bedTemp, :cost, :notes, 0)';
+    $query = 'INSERT INTO filament_spool (name, manufacturer_id, color, filament_id, filament_amount_new, print_temp, bed_temp, cost, notes, empty) VALUES (:name, :manufacturer, :color, :plasticType, :size, :printTemp, :bedTemp, :cost, :notes, false)';
     $statement = $db->prepare($query);
 
     $statement->bindValue(':name', $name);
