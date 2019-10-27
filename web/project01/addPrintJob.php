@@ -86,11 +86,11 @@ $db = get_db();
                 Did print job complete? 
                 <select name="completed" required>
                     <option disabled selected> -- select an option -- </option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                    <option value="true">Yes it completed</option>
+                    <option value="false">No it failed</option>
                 </select><br />
                 
-                If the print failed, enter the estimated percent it failed at: <input type="number" id="percentFailed" name="percentFailed" value="100" min="0" max="99"/><br />
+                If the print failed, enter the estimated percent it failed at (enter 100 if it printed successfully): <input type="number" id="percentFailed" name="percentFailed" value="100" min="0" max="100" required/><br />
 
                 <input type="submit" value="Submit Print Job"/>
             </form>
@@ -123,13 +123,6 @@ $db = get_db();
             }
         }
 
-        // Makes the percentage input required if the checkbox for failure is checked
-        function makeRequired() {
-            if (document.getElementById("percentFailed").checked == true) {
-                percentFailed.required = true;
-            } else {
-                percentFailed.required = false;
-            }
         }
     </script>
 </body>
