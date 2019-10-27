@@ -51,15 +51,12 @@ $db = get_db();
                 <br />
                 <input type="submit" value="Search by Plastic Type" />
             </form>
-
             <form>
                 Color:
                 <input type="text" name="color" />
                 <br />
                 <input type="submit" value="Search by Color" />
             </form>
-            <br />
-
             <form>
                 <input type="hidden" name="showAll" value="displayAll"/>
                 <br />
