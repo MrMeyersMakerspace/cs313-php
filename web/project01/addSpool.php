@@ -40,7 +40,7 @@ $db = get_db();
             <h1>Add a New Spool</h1>
             <h2 style="text-align:center;">Please enter the data below for a new spool of filament to add it to the database!</h2>
 
-            <form method="POST">
+            <form action="submitSpool.php" method="POST">
                 Name: <input type="text" name="name" placeholder="Spool Name" required/><br />
                 Manufacturer: 
                 <select name="manufacturer" required>
@@ -78,44 +78,7 @@ $db = get_db();
                 <input type="submit" value="Submit Spool"/>
             </form>
 
-            <?php
-            try
-            {
-                $name = $_POST[':name'];
-                $manufacturer = $_POST[':manufacturer'];
-                $color = $_POST[':color'];
-                $plasticType = $_POST[':plasticType'];
-                $size = $_POST[':size'];
-                $printTemp = $_POST[':printTemp'];
-                $bedTemp = $_POST[':bedTemp'];
-                $cost = $_POST[':cost'];
-                $notes = $_POST[':notes'];
 
-                $query = 'INSERT INTO filament_spool (name, manufacturer_id, color, filament_id, filament_amount_new, print_temp, bed_temp, cost, notes, empty) VALUES (:name, :manufacturer, :color, :plasticType, :size, :printTemp, :bedTemp, :cost, :notes, 0)';
-                $statement = $db->prepare($query);
-
-                $statement->bindValue(':name', $name);
-                $statement->bindValue(':manufacturer', $manufacturer);
-                $statement->bindValue(':color', $color);
-                $statement->bindValue(':plasticType', $plasticType);
-                $statement->bindValue(':size', $size);
-                $statement->bindValue(':printTemp', $printTemp);
-                $statement->bindValue(':bedTemp', $bedTemp);
-                $statement->bindValue(':cost', $cost);
-                $statement->bindValue(':notes', $notes);
-                $statement->execute();
-
-                echo "<h2>New spool added successfully</h2>";
-            }
-            catch (Exception $ex)
-            {
-                // Please be aware that you don't want to output the Exception message in
-                // a production environment
-                echo "Error with DB. Details: $ex";
-                die();
-            }
-
-            ?>
 
 
         </div>
