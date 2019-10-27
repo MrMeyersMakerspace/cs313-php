@@ -40,7 +40,7 @@ $db = get_db();
             <h1>View Current Spools</h1>
            
 
-            <form>
+            <form method="get">
                 <label>Type of Plastic:</label>
                 <input list="plasticType" />
                 <datalist id="plasticType">
