@@ -77,8 +77,8 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Check if print job failed <input type="checkbox" id="failed" onclick="makeRequired()"/>  
-                If print failed, enter the estimated percent it failed at: <input type="number" name="min" placeholder="0" min="0" max="99"/><br />
+                Check if print job failed <input type="checkbox" id="failed" onclick="makeRequired()"/><br />
+                If print failed, enter the estimated percent it failed at: <input type="number" id="percent" name="percentFailed" placeholder="0" min="0" max="99"/><br />
 
 
 
@@ -121,9 +121,9 @@ $db = get_db();
         // Makes the percentage input required if the checkbox for failure is checked
         function makeRequired() {
             if (document.getElementById("failed").checked = true) {
-                document.getElementById("percent").required = true;
+                percent.required = true;
             } else {
-                document.getElementById("percent").required = false;
+                percent.required = false;
             }
         }
     </script>
