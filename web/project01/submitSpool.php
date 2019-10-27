@@ -13,15 +13,15 @@ $bedTemp = $_POST['bedTemp'];
 $cost = $_POST['cost'];
 $notes = $_POST['notes'];
 
-echo $name;
-echo $manufacturer;
-echo $color;
-echo $plasticType;
-echo $size;
-echo $printTemp;
-echo $bedTemp;
-echo $cost;
-echo $notes;
+echo "name=$name\n";
+echo "manufacturer=$manufacturer\n";
+echo "color=$color\n";
+echo "plasticType=$plasticType\n";
+echo "size=$size\n";
+echo "printTemp=$printTemp\n";
+echo "bedTemp=$bedTemp\n";
+echo "cost=$cost\n";
+echo "notes=$notes\n";
 
 try
 {
