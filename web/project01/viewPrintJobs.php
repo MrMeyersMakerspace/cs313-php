@@ -61,7 +61,7 @@
 				echo '<li>Printed on: ' . $row['printer_id'];
 				echo '<li>Print time: ' . $row['print_time'];
 				echo '<li>Printed on: ' . $row['date'];
-				echo '<li>Printed by: ' . $row['user_id'];
+				echo '<li>Printed by: ' . $row['display_name'];
 				echo '</ul>';
 				echo '<br/>';
 			}
