@@ -41,7 +41,7 @@ $db = get_db();
             <h2 style="text-align:center;">Search print jobs by user, 3D printer, or display them all!</h2>
             <form>
                 User:
-                <select name="printer">
+                <select name="user">
                     <option value="Maker Meyers">Maker Meyers</option>
                     <option value="Miss Missy">Miss Missy</option>
                 </select>
@@ -50,7 +50,7 @@ $db = get_db();
             </form>
             <form>
                 Printer:
-                <select name="user">
+                <select name="printer">
                     <option value="Steel">Steel</option>
                     <option value="Brass">Brass</option>
                 </select>
