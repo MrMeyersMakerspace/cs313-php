@@ -44,7 +44,7 @@ $db = get_db();
                 Name: <input type="text" name="name" placeholder="Job Name" required/><br />
                 Spool Used: 
                 <select name="spool" required>
-
+                    <option disabled selected> -- select an option -- </option>
                     <?php
                     $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
 
@@ -56,6 +56,7 @@ $db = get_db();
                 Amount of Filament Used: <input type="number" name="amount" placeholder="0" min="0" required/><br />
                 Printer Used: 
                 <select name="printer" required>
+                <option disabled selected> -- select an option -- </option>
                     <?php
                     $rows = $db->query('SELECT * FROM printer');
 
@@ -67,6 +68,7 @@ $db = get_db();
                 Print Time: Hours <input type="number" name="hours" placeholder="0" min="0" max="500" required/> Minutes <input type="number" name="min" placeholder="0" min="0" max="59" required/><br />
                 User: 
                 <select name="user" required>
+                <option disabled selected> -- select an option -- </option>
                     <?php
                     $rows = $db->query('SELECT * FROM users');
 
@@ -75,7 +77,7 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Check if print job failed <input type="checkbox" id="failed" value="true" onclick="makeRequired()"/>  
+                Check if print job failed <input type="checkbox" id="failed" onclick="makeRequired()"/>  
                 If print failed, enter the estimated percent it failed at: <input type="number" name="min" placeholder="0" min="0" max="99"/><br />
 
 
