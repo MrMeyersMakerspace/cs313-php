@@ -3,15 +3,15 @@
 require("dbConnect.php");
 $db = get_db();
 
-$name = $_POST['name'];
-$manufacturer = $_POST['manufacturer'];
-$color = $_POST['color'];
-$plasticType = $_POST['plasticType'];
-$size = $_POST['size'];
-$printTemp = $_POST['printTemp'];
-$bedTemp = $_POST['bedTemp'];
-$cost = $_POST['cost'];
-$notes = $_POST['notes'];
+$name           = $_POST['name'];
+$manufacturer   = $_POST['manufacturer'];
+$color          = $_POST['color'];
+$plasticType    = $_POST['plasticType'];
+$size           = $_POST['size'];
+$printTemp      = $_POST['printTemp'];
+$bedTemp        = $_POST['bedTemp'];
+$cost           = $_POST['cost'];
+$notes          = $_POST['notes'];
 
 echo "name=$name\n";
 echo "manufacturer=$manufacturer\n";

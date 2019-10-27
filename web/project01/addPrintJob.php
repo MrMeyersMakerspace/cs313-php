@@ -42,6 +42,7 @@ $db = get_db();
 
             <form action="submitPrintJob.php" method="POST">
                 Name: <input type="text" name="name" placeholder="Job Name" required/><br />
+
                 Spool Used: 
                 <select name="spool" required>
                     <option disabled selected> -- select an option -- </option>
@@ -53,10 +54,12 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
+
                 Amount of Filament Used: <input type="number" name="amount" placeholder="0" min="0" required/><br />
+                
                 Printer Used: 
                 <select name="printer" required>
-                <option disabled selected> -- select an option -- </option>
+                    <option disabled selected> -- select an option -- </option>
                     <?php
                     $rows = $db->query('SELECT * FROM printer');
 
@@ -65,10 +68,12 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
+                
                 Print Time: Hours <input type="number" name="hours" placeholder="0" min="0" max="500" required/> Minutes <input type="number" name="min" placeholder="0" min="0" max="59" required/><br />
+                
                 User: 
                 <select name="user" required>
-                <option disabled selected> -- select an option -- </option>
+                    <option disabled selected> -- select an option -- </option>
                     <?php
                     $rows = $db->query('SELECT * FROM users');
 
@@ -77,15 +82,10 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Check if print job failed <input type="checkbox" id="failed" onclick="makeRequired()"/><br />
-                If print failed, enter the estimated percent it failed at: <input type="number" id="percent" name="percentFailed" placeholder="0" min="0" max="99"/><br />
-
-
-
-
-
-
-
+                
+                Check if print job failed <input type="checkbox" id="failed" name="failed" onclick="makeRequired()"/><br />
+                
+                If print failed, enter the estimated percent it failed at: <input type="number" id="percentFailed" name="percentFailed" placeholder="0" min="0" max="99"/><br />
 
                 <input type="submit" value="Submit Print Job"/>
             </form>
@@ -120,7 +120,7 @@ $db = get_db();
 
         // Makes the percentage input required if the checkbox for failure is checked
         function makeRequired() {
-            if (document.getElementById("failed").checked == true) {
+            if (document.getElementById("percentFailed").checked == true) {
                 percent.required = true;
             } else {
                 percent.required = false;
