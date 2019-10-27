@@ -41,18 +41,25 @@ $db = get_db();
            
 
             <form>
-                <label>Type of Plastic:</label>
-                <select name="plasticType">
-                    <option value="PLA">PLA</option>
-                    <option value="PETG">PETG</option>
-                    <option value="ABS">ABS</option>
-                    <option value="TPU">TPU</option>
-                </select>
+                Type of plastic:
+                <input type="text" name="plasticType" />
                 <br />
                 <input type="submit" value="Search" />
             </form>
 
             <?php
+            //            <form>
+            //    <label>Type of Plastic:</label>
+            //    <select name="plasticType">
+            //        <option value="PLA">PLA</option>
+            //        <option value="PETG">PETG</option>
+            //        <option value="ABS">ABS</option>
+            //        <option value="TPU">TPU</option>
+            //    </select>
+            //    <br />
+            //    <input type="submit" value="Search" />
+            //</form>
+
             $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
             $statement -> bindValue(':plasticType', $_POST['plasticType'], PDO::PARAM_STR);
             $statement -> execute();
