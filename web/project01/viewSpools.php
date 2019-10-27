@@ -39,7 +39,7 @@ $db = get_db();
 
             <h1>View Current Spools</h1>
 
-            <h3 style="text-align:center;">Search by plastic type, color of filament, or display all available spools!</h3>
+            <h2 style="text-align:center;">Search by plastic type, color of filament, or display all available spools!</h2>
             <form>
                 Type of Plastic:
                 <select name="plasticType">
