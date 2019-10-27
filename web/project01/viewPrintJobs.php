@@ -61,7 +61,7 @@
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
 				echo '<li>Printed on: ' . $row['printer_name'];
 				echo '<li>Print time: ' . $row['print_time'];
-				echo '<li>Printed on: ' . $row['date'];
+				echo '<li>Print date: ' . $row['date'];
 				echo '<li>Printed by: ' . $row['display_name'];
 				echo '</ul>';
 				echo '<br/>';
