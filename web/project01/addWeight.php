@@ -1,4 +1,8 @@
-
+<?php
+// Connect to database on startup
+require("dbConnect.php");
+$db = get_db();
+?>
 <html>
 <head>
     <meta charset="utf-8" />
