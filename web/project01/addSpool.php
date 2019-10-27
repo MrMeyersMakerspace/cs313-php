@@ -74,8 +74,8 @@ $db = get_db();
                 Print Temp: <input type="number" name="printTemp" /><br />
                 Bed Temp: <input type="number" name="bedTemp" /><br />
                 Cost: <input type="number" name="cost" /><br />
-                Notes: <textarea name="notes" /><br />
-                <input type="submit" value="Submit Spool" />
+                Notes: <textarea rows="4" cols="50" name="notes" id="textBox" onfocus="removeText()">Enter any extra notes here.</textarea><br />
+                <input type="submit" value="Submit Spool"/>
             </form>
         </div>
         <footer>
@@ -96,14 +96,18 @@ $db = get_db();
 
     <script>
     // Shows navigation bar list when icon clicked
-function navigationBar() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+    function navigationBar() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+         } else {
+           x.className = "topnav";
+         }
+    }
+
+        function removeText() {
+            document.getElementById("textBox").innerHTML = "";
+        }
     </script>
 </body>
 </html>
