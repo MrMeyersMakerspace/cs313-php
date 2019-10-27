@@ -51,20 +51,28 @@ $db = get_db();
                 <input type="submit" value="Search" />
             </form>
 
+            <form>
+                Color:
+                <input type="text" name="color" />
+                <br />
+                <input type="submit" value="Search" />
+            </form>
 
             <?php
-            //<form>
-            //    Type of plastic:
-            //    <input type="text" name="plasticType" />
-            //    <br />
-            //    <input type="submit" value="Search" />
-            //</form>
+ 
+            if (isset($_GET['plasticType'])) {
+                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
+                $statement -> bindValue(':plasticType', $_GET['plasticType'], PDO::PARAM_STR);
+                $statement -> execute();
+                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+            }
 
-            $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
-            $statement -> bindValue(':plasticType', $_GET['plasticType'], PDO::PARAM_STR);
-            $statement -> execute();
-            $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
-
+            if (isset($_GET['color'])) {
+                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE color = :color');
+                $statement -> bindValue(':color', $_GET['color'], PDO::PARAM_STR);
+                $statement -> execute();
+                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+            }
 
 			foreach ($rows as $row)
 			{
