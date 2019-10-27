@@ -122,8 +122,6 @@ $db = get_db();
                 x.className = "topnav";
             }
         }
-
-        }
     </script>
 </body>
 </html>
