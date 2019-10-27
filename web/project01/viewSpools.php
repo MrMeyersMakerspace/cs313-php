@@ -42,7 +42,7 @@ $db = get_db();
 			<?php
 			foreach ($db->query('SELECT name, filament_left, print_temp, bed_temp FROM filament_spool') as $row)
 			{
-				echo '<h3>' . $row['name'] . '</h3>';
+				echo '<h3>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</h3>';
 				echo '<ul>';
 				echo '<li>Amount of filament left: ' . $row['filament_left'] . ' grams</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
