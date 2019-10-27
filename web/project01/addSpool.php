@@ -38,7 +38,24 @@ $db = get_db();
             </header>
 
             <h1>Add a New Spool</h1>
+            <h2 style="text-align:center;">Please enter the data below for a new spool of filament to add it to the database!</h2>
 
+            <form>
+                Name: <input type="text" value="name" /><br />
+                Manufacturer: 
+                <select name="manufacturer">
+
+                    <?php
+                    $rows = $db->query('SELECT * FROM filament_manufacturer');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['company'] . "'>" . $row['company'] . "</option>";
+                    }
+                    ?>
+
+                </select>
+                <input type="submit" value="Submit Spool" />
+            </form>
         </div>
         <footer>
             <div class="footer-center">
