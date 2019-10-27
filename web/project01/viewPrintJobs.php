@@ -38,13 +38,36 @@ $db = get_db();
             </header>
 
             <h1>View Stored Print Jobs</h1>
+            <h2 style="text-align:center;">Search print jobs by user or display them all!</h2>
+            <form>
+                User:
+                <select name="user">
+                    <option value="Maker Meyers">Maker Meyers</option>
+                    <option value="Miss Missy">Miss Missy</option>
+                </select>
+                <br />
+                <input type="submit" value="Search by User" />
+            </form>
+            <form>
+                <input type="hidden" name="showAll" value="displayAll"/>
+                <br />
+                <input type="submit" value="Display All" />
+            </form>
 
             <?php
+            if (isset($_GET['user'])) {
+                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE display_name = :user');
+                $statement -> bindValue(':user', $_GET['user'], PDO::PARAM_STR);
+                $statement -> execute();
+                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+            }
 
-
+            if (isset($_GET['showAll'])) {
+                $rows = $db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)') as $row)
+            }
 
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
-			foreach ($db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)') as $row)
+			foreach ($rows as $row)
 			{
 				echo '<h3>Print job - ' . $row['name'] . '</h3>';
 				echo '<ul>';
