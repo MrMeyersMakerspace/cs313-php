@@ -83,10 +83,7 @@ $db = get_db();
             }
 
             if (isset($_GET['showAll'])) {
-                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
-                $statement -> bindValue(':showAll', $_GET['showAll'], PDO::PARAM_STR);
-                $statement -> execute();
-                $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
+                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
             }
 
 			foreach ($rows as $row)
