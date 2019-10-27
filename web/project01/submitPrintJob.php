@@ -31,6 +31,7 @@ echo "min           = $min\n";
 echo "user          = $user\n";
 echo "failed        = $failed\n";
 echo "percentFailed = $percentFailed\n";
+echo "time          = $time\n";
 
 
 try
