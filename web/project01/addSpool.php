@@ -41,7 +41,7 @@ $db = get_db();
             <h2 style="text-align:center;">Please enter the data below for a new spool of filament to add it to the database!</h2>
 
             <form>
-                Name: <input type="text" name="name" /><br />
+                Name: <input type="text" name="name" placeholder="Spool Name"/><br />
                 Manufacturer: 
                 <select name="manufacturer">
 
@@ -53,7 +53,7 @@ $db = get_db();
                     }
                     ?>
                 </select><br />
-                Color: <input type="text" name="color" /><br />
+                Color: <input type="text" name="color" placeholder="Filament Color"/><br />
                 Type of Plastic: 
                 <select name="plasticType">
                     <?php
