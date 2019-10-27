@@ -120,7 +120,7 @@ $db = get_db();
 
         // Makes the percentage input required if the checkbox for failure is checked
         function makeRequired() {
-            if (document.getElementById("failed").checked = true) {
+            if (document.getElementById("failed").checked == true) {
                 percent.required = true;
             } else {
                 percent.required = false;
