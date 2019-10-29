@@ -13,7 +13,7 @@ echo "weight=$weight\n";
 try
 {
     // Gets the current weight for the spool and sets it to a variable
-    $sql = 'SELECT filament_manufacturer.empty_spool_weight FROM (filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_manufacturer.id = $spool';
+    $sql = 'SELECT filament_manufacturer.empty_spool_weight FROM (filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id) WHERE filament_manufacturer.id = $spool';
     $emptyWeight = $db->query($sql);
     echo "Empty Weight = $emptyWeight\n";
 
