@@ -13,14 +13,8 @@ echo "weight=$weight\n";
 try
 {
     // Gets the current weight for the spool and sets it to a variable
-    $query1 = 'SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = $spool';
-    $result = mysql_query($sql);
-    if (!$result) {
-        echo 'Could not run query: ' . mysql_error();
-        exit;
-    }
-    $emptyWeight = mysql_fetch_row($result);
-    
+    $sql = 'SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = $spool';
+    $emptyWeight = $db->query($sql);
     echo "Empty Weight = $emptyWeight\n";
 
     // Changes new weight to entered value minus the empty spool weight
