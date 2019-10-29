@@ -38,6 +38,25 @@ $db = get_db();
             </header>
 
             <h1>Change Weight of Current Spool</h1>
+            <h2 style="text-align:center;">Select a spool of filament and add the new weight for that spool!</h2>
+
+            <form action="submitWeight.php" method="POST">
+                Spool of Filament: 
+                <select name="spool" required>
+                    <option disabled selected> -- select an option -- </option>
+                    <?php
+                    $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['name'] . " - " . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+
+                New spool weight: <input type="number" name="weight" placeholder="0" min="0" required/><br />
+                <input type="submit" value="Submit New Weight"/>
+            </form>
+
 
         </div>
         <footer>
