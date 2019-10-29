@@ -38,7 +38,16 @@ $db = get_db();
             </header>
 
             <h1>Add a New Printer</h1>
-            
+             <h2 style="text-align:center;">Please enter the data below for a new 3D printer to add it to the database!</h2>
+
+            <form action="submitPrinter.php" method="POST">
+                Name: <input type="text" name="name" placeholder="Printer Name" required/><br />
+                Manufacturer: <input type="text" name="manufacturer" placeholder="Manufacturer" required/><br />
+                Model: <input type="text" name="model" placeholder="Model" required/><br />
+                <input type="submit" value="Submit Spool"/>
+            </form>
+
+
         </div>
         <footer>
             <div class="footer-center">
