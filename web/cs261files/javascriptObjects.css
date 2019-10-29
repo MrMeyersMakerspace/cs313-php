@@ -1,0 +1,104 @@
+﻿code {
+    background-color: lightgray;
+    color: darkred;
+}
+
+pre {
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: lightgray;
+    color: darkred;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+body {
+    background-color: #a3b9c9;
+    font-family: 'Dosis', sans-serif;
+    color: #1c2321;
+    margin: 0;
+}
+
+#pageName {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: "Arial-black", sans-serif;
+    background-color: #1c2321;
+    padding: 15px;
+    margin: 0px;
+    text-decoration: underline;
+    color: #f4f4f9;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 3.6rem;
+}
+
+header {
+    text-align: center;
+    overflow: hidden;
+    background-color: #1c2321;
+    padding: 20px 10px;
+    color: #f4f4f9
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background-color: #7A918D;
+    color: black;
+    text-align: center;
+}
+
+a {
+    color: #1c2321;
+}
+
+div a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+h2 {
+    background-color: lightgrey;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 18px;
+}
+
+ul {
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 680px) {
+
+    #pageName {
+        font-size: 20px;
+    }
+
+    pre {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}

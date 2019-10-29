@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AJAX Practice</title>
+    <link rel="stylesheet" type="text/css" href="javascriptObjects.css" />
+</head>
+<body>
+    <h1>AJAX (Asynchronous JavaScript and XML) Requests</h1>
+    <h2>Using XMLHTTPRequest to Consume a JSON Web Service</h2>
+    <br />
+    <h3><u>XMLHTTPRequest</u></h3>
+    <p>The Syntax for an AJAX request is as follows:</p>
+    <pre>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "demo_post.asp", true);
+    xhttp.send();</pre>
+    <p>Now lets break down each line to understand what it does:</p>
+    <ul type="disc">
+        <li><code>var xhttp = new XMLHttpRequest();</code></li>
+        <ul>
+            <li>This line creates a new XMLHttpRequest object, which is why you need the new keyword.  This object is what allows you to create an AJAX request to a server.</li>
+            <li>The <code>xhttp</code> variable can be named whatever you want and is simply a variable name.</li>
+        </ul>
+        <li><code>xhttp.onreadystatechange = function() {}</code></li>
+        <ul>
+            <li>This line allows you to define a function that will be excecuted when the AJAX request receives an answer from the server.</li>
+            <li>This is useful because it allows you to do something with the data that is received back from the server on a successful request to the server.</li>
+        </ul>
+        <li><code>if (this.readyState == 4 && this.status == 200) {}</code></li>
+        <ul>
+            <li>This is a check to make sure that you get a valid answer back from the server.  There are two parts to this check.</li>
+            <li>The <code>this.readyState == 4</code> check ensures the XMLHttpRequest client is done loading and has sent back it's data.  readyState codes are as follows:</li>
+            <ol start="0">
+                <li>request not initialized</li>
+                <li>server connection established</li>
+                <li>request received</li>
+                <li>processing request</li>
+                <li>request finished and response is ready</li>
+            </ol>
+            <li>The <code>this.status == 200</code> check looks at the html status.  200 means okay, whereas 403 is "forbidden" and 404 is "page not found".</li>
+            <li>By having a readyState of 4 and html status of 200 that means the AJAX request was sent and a proper reponse was received by the client.</li>
+        </ul>
+        <li><code>document.getElementById("demo").innerHTML = this.responseText;</code></li>
+        <ul>
+            <li>This line of code is one of many that might be used when an AJAX request is completed.  This one in particular puts the incoming data into an empty <code>&lt;div&gt;</code> tag, which works well if the incoming data already has preformatted html code.</li>
+            <li><code>this.responseText</code> allows access to the data that is returning from the server.  This may be JSON data that can be parsed and used in your JavaScript or it could be html content that will displayed directly or any number of other sets of data.</li>
+        </ul>
+        <li><code>xhttp.open("POST", "demo_post.asp", true);</code></li>
+        <ul>
+            <li>This section of code specifies the type of request that is being sent and where it is being sent to.</li>
+            <li>The <code>"POST"</code> section specifies the type of request, either POST or GET (more on that later)</li>
+            <li>The <code>"demo_post.asp"</code> section specifies the url for the request.  This often is a php page to process data but can also be any number of other pages or even .txt documents. This link can also include a query string to send data to the server (more on this later).</li>
+            <li>The <code>true</code> section specified whether the request will be asynchronous (after sending the AJAX request other code will continue to execute until a response is received) when the value is TRUE or synchronous (all other JavaScript code will wait until a response is received from the server) when the value is FALSE.</li>
+            <ul><li>NOTE:  The onreadystatechange function isn't needed on a synchronous request since the code waits for server completion but synchronous requests are in the process of being removed from the web standard and are not recommended.</li></ul>
+        </ul>
+        <li><code>xhttp.send();</code></li>
+        <ul>
+            <li>This line actually sends the AJAX request to the server.</li>
+            <li>If doing a POST request this is where you put in your query string.</li>
+        </ul>
+    </ul><br />
+
+    <!--AJAX Request Types-->
+    <h3><u>Types of AJAX Requests</u></h3>
+    <p>There are two types of AJAX requests, GET and POST.  Below is a description of each, their advantages and disadvantages, and an example of the type of request working.</p>
+
+    <!--GET Info-->
+    <h4>GET Request</h4>
+    <p>A GET request is simpler and faster than a POST request but is far less secure.  When sending data up to a server with a GET request it is done with a query string in the URL.  This has the advantage of allowing a bookmarked page to always submit the same request but is unsecure because all of the data being sent is visable in the URL.  GET requests also are limited in the amount of data that can be sent to the server.  NOTE:  Sensitive/private data should never be sent using a GET request.</p>
+    <p>The query string for a GET request looks like this: <br />
+    <code>?varName=varValue&var2name=var2value</code></p>
+    <p>Below is a form that will be submitted using a GET request.  When it is submitted you will see a copy of the URL that is used show up below the submit button as an example of a url query string.</p>
+
+    <!--GET Form-->
+    <label>Name: </label><input type="text" id="nameG" /><br />
+    <label>Favorite Color: </label><input type="text" id="favColorG" /><br />
+    <label>Favorite Ice Cream Flavor: </label><input type="text" id="iceCreamG" /><br />
+    <button onclick="getRequest()">Submit GET Request</button><br /><br />
+
+    <p>GET Query String URL:</p>
+    <code id="getQuery"></code><br /><br />
+    <p>GET form result:</p>
+    <p id="getDemo"></p><br />
+    <p>Code for GET AJAX Request:</p>
+    <pre>
+var url = "getRequest.php"
+  + "?nameG=" + document.getElementById("nameG").value
+  + "&favColorG=" + document.getElementById("favColorG").value
+  + "&iceCreamG=" + document.getElementById("iceCreamG").value;
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("getDemo").innerHTML = this.responseText;
+        document.getElementById("getQuery").innerHTML = url;
+    }
+};
+xhttp.open("GET", url, true);
+xhttp.send();</pre><br /><br />
+
+    <!--POST Info-->
+    <h4>POST Request</h4>
+    <p>A POST request is more secure than a GET request.  It also has the advantage of having no size limitations as it is sending data back and forth to the server.  It is great for sending user input in a large form in a secure way that prevents others from seeing the data and allows for server side input validation that strips out any JavaScript.  NOTE:  POST should always be used for sensitive/private data.</p>
+    <p>The variable string for a POST request looks like this: <br />
+        <code>varName=varValue&var2name=var2value</code></p>
+    <p>Below is a form that will be submitted using a POST request.  When it is submitted you will see a copy of the variable string that is used show up below the submit button as an example of a the variable string.</p>
+
+    <!--POST Form-->
+    <label>Name: </label><input type="text" id="nameP" /><br />
+    <label>Favorite Color: </label><input type="text" id="favColorP" /><br />
+    <label>Favorite Ice Cream Flavor: </label><input type="text" id="iceCreamP" /><br />
+    <button type="submit" onclick="postRequest()">Submit POST Request</button><br /><br />
+
+    <p>POST Variable String:</p>
+    <code id="postQuery"></code><br /><br />
+    <p>POST form result:</p>
+    <p id="postDemo"></p><br />
+    <p>Code for POST AJAX Request:</p>
+<pre>
+var postVariables =
+  "nameP=" + document.getElementById("nameP").value
+  + "&favColorP=" + document.getElementById("favColorP").value
+  + "&iceCreamP=" + document.getElementById("iceCreamP").value;
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("postDemo").innerHTML = this.responseText;
+        document.getElementById("postQuery").innerHTML = postVariables;
+    }
+};
+xhttp.open("POST", "postRequest.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send(postVariables);</pre><br /><br />
+
+    <script>
+        // GET AJAX Request Code
+        function getRequest() {
+            // Creates the url query string
+            // The PHP file that is being used here is on my Heroku but a copy of it is on my GitHub so you can see what it does
+            var url = "getRequest.php" + /*Beginning of query string*/"?nameG=" + document.getElementById("nameG").value + "&favColorG=" + document.getElementById("favColorG").value + "&iceCreamG=" + document.getElementById("iceCreamG").value;
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("getDemo").innerHTML = this.responseText;
+                    document.getElementById("getQuery").innerHTML = url;
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        // POST AJAX Request Code
+        function postRequest() {
+            // Create variables to sent via post
+            var postVariables = "nameP=" + document.getElementById("nameP").value + "&favColorP=" + document.getElementById("favColorP").value + "&iceCreamP=" + document.getElementById("iceCreamP").value;
+            // A copy of the POST php file that is being used here is also on my GitHub for viewing
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("postDemo").innerHTML = this.responseText;
+                    document.getElementById("postQuery").innerHTML = postVariables;
+                }
+            };
+            xhttp.open("POST", "postRequest.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //Needs to be added for post requests
+            xhttp.send(postVariables);
+        }
+    </script>
+</body>
+</html>
