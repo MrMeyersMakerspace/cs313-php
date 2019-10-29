@@ -44,7 +44,7 @@ $db = get_db();
                 Name: <input type="text" name="name" placeholder="Printer Name" required/><br />
                 Manufacturer: <input type="text" name="manufacturer" placeholder="Manufacturer" required/><br />
                 Model: <input type="text" name="model" placeholder="Model" required/><br />
-                <input type="submit" value="Submit Spool"/>
+                <input type="submit" value="Add Printer"/>
             </form>
 
 

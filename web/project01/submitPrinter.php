@@ -31,7 +31,7 @@ catch (Exception $ex)
     die();
 }
 
-header("Location: addSpool.php");
+header("Location: addPrinter.php");
 
 die();
 
