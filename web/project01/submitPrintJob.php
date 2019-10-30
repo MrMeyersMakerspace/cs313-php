@@ -28,8 +28,7 @@ echo "time          = $time\n";
 
 try
 {
-
-
+    // Inserts new print job into the table
     $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :completed, :percentFailed, :time)';
     $statement = $db->prepare($query);
 
@@ -43,6 +42,25 @@ try
     $statement->bindValue(':completed', $completed);
     $statement->bindValue(':percentFailed', $percentFailed);
     $statement->bindValue(':time', $time);
+    $statement->execute();
+
+    // Gets the current weight for the spool and sets it to a variable
+    $sql = "SELECT filament_left FROM filament_spool WHERE id = $spool";
+    foreach ($db->query($sql) as $row) {
+        $currentFilament = $row['filament_left'];
+    }
+
+    // Calculates actual filament used as a function of how much of the print was actually completed
+    $filamentUsed = $amount * ($percentFailed / 100);
+
+    // Calculate the new weight for the spool by removing amount used in print job
+    $newWeight = $currentFilament - $filamentUsed;
+
+    // Set spool to new weight based off above calculation
+    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE id = :spool';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':newWeight', $newWeight);
+    $statement->bindValue(':spool', $spool);
     $statement->execute();
 }
 catch (Exception $ex)
