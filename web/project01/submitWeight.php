@@ -16,10 +16,10 @@ try
     //$sql = 'SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = :spool';
     //$emptyWeight = $db->query($sql);
 
-    $query = 'SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = :spool';
-    $emptyWeight = $db->prepare($query);
-    $emptyWeight->bindValue(':spool', $spool);
-    $emptyWeight->execute();
+    $sql = "SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = $spool";
+    foreach ($db->query($sql) as $row) {
+        $emptyWeight = $row['empty_spool_weight'];
+    }
 
     echo "Empty Weight = $emptyWeight\n";
 
