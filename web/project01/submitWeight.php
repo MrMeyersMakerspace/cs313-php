@@ -31,6 +31,7 @@ try
     $statement = $db->prepare($query);
 
     $statement->bindValue(':newWeight', $newWeight);
+    $statement->bindValue(':spool', $spool);
     $statement->execute();
 
 
