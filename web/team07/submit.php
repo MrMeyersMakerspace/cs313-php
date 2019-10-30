@@ -12,4 +12,7 @@ $statement->bindValue(':username', $username);
 $statement->bindValue(':password', $password);
 $statement->execute();
 
+$newURL = 'sign-in.php';
+header('Location: ' . $newURL);
+die();
 ?>
