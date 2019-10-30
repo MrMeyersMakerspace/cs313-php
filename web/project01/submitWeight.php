@@ -27,7 +27,7 @@ try
     $newWeight = $weight - $emptyWeight;
     echo "New Weight = $newWeight\n";
 
-    $query = 'UPDATE filament_spool SET filament_left = :newWeight';
+    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE id = :spool';
     $statement = $db->prepare($query);
 
     $statement->bindValue(':newWeight', $newWeight);
