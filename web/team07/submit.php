@@ -12,6 +12,6 @@ $statement->bindValue(':username', $username);
 $statement->bindValue(':password', $password);
 $statement->execute();
 
-header('Location: sign-in.php');
+header("Location: sign-in.php");
 die();
 ?>
