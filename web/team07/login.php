@@ -12,21 +12,23 @@ $password = $_POST['password'];
 $query = 'SELECT password FROM teamuser WHERE username = :username';
 $statement = $db->prepare($query);
 $statement->bindValue(':username', $username);
-$statement->execute();
-foreach ($db->query($statement) as $row) {
+$result = $statement->execute();
+
+if ($result) {
+	$row = $statement->fetch();
     $hashedPassword = $row['password'];
-}
 
-if (password_verify($password, $hashedPassword)) {
-    $_SESSION['user_id'] = $username;
+    if (password_verify($password, $hashedPassword)) {
+        $_SESSION['user_id'] = $username;
 
-    // Correct Password
-    header("Location: welcome.php");
-    die();
+        // Correct Password
+        header("Location: welcome.php");
+        die();
 
-} else {
-    // Wrong password
-    header("Location: sign-in.php");
-    die();
+    } else {
+        // Wrong password
+        header("Location: sign-in.php");
+        die();
+    }
 }
 ?>
