@@ -9,8 +9,11 @@ $db = get_db();
 $username = $_POST['username'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$sql = 'SELECT password FROM teamuser WHERE username = :username';
-foreach ($db->query($sql) as $row) {
+$query = 'SELECT password FROM teamuser WHERE username = :username';
+$statement = $db->prepare($query);
+$statement->bindValue(':username', $username);
+$statement->execute();
+foreach ($db->query($statement) as $row) {
     $hashedPassword = $row['username'];
 }
 
