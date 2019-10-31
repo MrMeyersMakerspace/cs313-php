@@ -14,7 +14,7 @@ $statement = $db->prepare($query);
 $statement->bindValue(':username', $username);
 $statement->execute();
 foreach ($db->query($statement) as $row) {
-    $hashedPassword = $row['username'];
+    $hashedPassword = $row['password'];
 }
 
 if (password_verify($password, $hashedPassword)) {
