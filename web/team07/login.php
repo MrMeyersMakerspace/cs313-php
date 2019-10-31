@@ -18,7 +18,7 @@ foreach ($db->query($statement) as $row) {
 }
 
 if (password_verify($password, $hashedPassword)) {
-    $_SESSION["user_id"] = $username;
+    $_SESSION['user_id'] = $username;
 
     // Correct Password
     header("Location: welcome.php");
