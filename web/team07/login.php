@@ -7,7 +7,7 @@ require("dbConnect.php");
 $db = get_db();
 
 $username = $_POST['username'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = $_POST['password'];
 
 $query = 'SELECT password FROM teamuser WHERE username = :username';
 $statement = $db->prepare($query);
