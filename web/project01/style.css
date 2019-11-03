@@ -164,6 +164,11 @@ ul {
     color: red;
 }
 
+.spool {
+    background-color: burlywood;
+    border-radius: 5px;
+    padding: 5px;
+}
 
 
 

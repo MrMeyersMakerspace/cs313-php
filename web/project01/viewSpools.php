@@ -99,23 +99,22 @@ $db = get_db();
             }
 
             if (isset($_GET['showAll'])) {
-                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE filament_left > 0');
+                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE fs.filament_left > 0');
             }
 
             if (isset($_GET['showEmpty'])) {
-                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE filament_left <= 0');
+                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE fs.filament_left <= 0');
             }
 
 			foreach ($rows as $row)
 			{
-                echo '<h3>"' . $row['name'] . '"</h3>';
+                echo '<div class="spool"><h3>"' . $row['name'] . '"</h3>';
 				echo '<ul>';
                 echo '<li>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</li>';
 				echo '<li>' . $row['filament_left'] . ' grams left</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
-				echo '</ul>';
-				echo '<br/>';
+				echo '</ul></div>';
 			}
             ?>
 
