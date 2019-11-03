@@ -73,6 +73,7 @@ else
                 <?php
                 if(isset($_GET['logout'])) {
                     session_unset();
+                    header("Refresh:0");
                 }
                 ?>
             </div>
