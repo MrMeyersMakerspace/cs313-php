@@ -135,10 +135,6 @@ ul {
     font-size: 18px;
 }
 
-.form {
-    text-align: center;
-}
-
 #signup {
     padding: 5px;
     background-color: #1c2321;
@@ -170,6 +166,10 @@ ul {
     flex-direction: row;
 }
 
+form {
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
 @media screen and (max-width: 850px) {
     header a {

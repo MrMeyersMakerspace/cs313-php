@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
     <p>Please fill out the following information for your new account.  Once submitted you will have to wait for approval by Maker Meyers before being able to login.</p>
-    <div class="form">
+    <div class="center">
         <form method="POST" action="submit.php">
             <label>Display Name:</label>
             <br />
