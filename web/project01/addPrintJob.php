@@ -55,7 +55,7 @@ $db = get_db();
             <h2 style="text-align:center;">Please fill out the form below for the new print job!</h2>
 
             <form action="submitPrintJob.php" method="POST">
-                Name: <input type="text" name="name" placeholder="Job Name" required/><br />
+                Name: <input type="text" name="job_name" placeholder="Job Name" required/><br />
 
                 Spool Used: 
                 <select name="spool" required>

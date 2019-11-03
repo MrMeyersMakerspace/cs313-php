@@ -112,9 +112,9 @@ $db = get_db();
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
 			foreach ($rows as $row)
 			{
-				echo '<h3>Print job - ' . $row['print_job.name'] . '</h3>';
+				echo '<h3>Print job - ' . $row['job_name'] . '</h3>';
 				echo '<ul>';
-                echo '<li>Spool used: ' . $row['color'] . ' ' . $row['filament_spool.name'] . '</li>'; 
+                echo '<li>Spool used: ' . $row['color'] . ' ' . $row['name'] . '</li>'; 
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
 				echo '<li>Printed on: ' . $row['printer_name'] . '</li>';
 				echo '<li>Print time: ' . $row['time_hours'] . ' hr ' . $row['time_minutes'] . ' min</li>';

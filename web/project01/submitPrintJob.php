@@ -17,7 +17,7 @@ else
 require("dbConnect.php");
 $db = get_db();
 
-$name           = $_POST['name'];
+$job_name       = $_POST['job_name'];
 $spool          = $_POST['spool'];
 $amount         = $_POST['amount'];
 $printer        = $_POST['printer'];
@@ -28,7 +28,7 @@ $completed      = $_POST['completed'];
 $percentFailed  = $_POST['percentFailed'];
 $time           = date('Y-m-d H:i:s');
 
-echo "name          = $name\n";
+echo "job_name      = $job_name\n";
 echo "spool         = $spool\n";
 echo "amount        = $amount\n";
 echo "printer       = $printer\n";
@@ -43,10 +43,10 @@ echo "time          = $time\n";
 try
 {
     // Inserts new print job into the table
-    $query = 'INSERT INTO print_job (name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:name, :spool, :amount, :printer, :hours, :min, :user, :completed, :percentFailed, :time)';
+    $query = 'INSERT INTO print_job (job_name, spool_id, filament_used, printer_id, time_hours, time_minutes, user_id, completed, percent_at_failure, date) VALUES (:job_name, :spool, :amount, :printer, :hours, :min, :user, :completed, :percentFailed, :time)';
     $statement = $db->prepare($query);
 
-    $statement->bindValue(':name', $name);
+    $statement->bindValue(':job_name', $job_name);
     $statement->bindValue(':spool', $spool);
     $statement->bindValue(':amount', $amount);
     $statement->bindValue(':printer', $printer);

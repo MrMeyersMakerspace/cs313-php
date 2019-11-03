@@ -56,7 +56,7 @@ CREATE TABLE public.filament_spool
  CREATE TABLE public.print_job
 (
 	id SERIAL NOT NULL PRIMARY KEY,
-	name VARCHAR(100) NOT NULL,
+	job_name VARCHAR(100) NOT NULL,
 	spool_id INT NOT NULL REFERENCES public.filament_spool(id),
 	filament_used INT NOT NULL,
 	printer_id INT NOT NULL REFERENCES public.printer(printer_id),
