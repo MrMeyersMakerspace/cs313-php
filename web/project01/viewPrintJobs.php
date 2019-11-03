@@ -53,29 +53,42 @@ $db = get_db();
 
             <h1>View Stored Print Jobs</h1>
             <h2 style="text-align:center;">Search print jobs by user, 3D printer, or display them all!</h2>
-            <form>
-                User:
-                <select name="user">
-                    <option value="Maker Meyers">Maker Meyers</option>
-                    <option value="Miss Missy">Miss Missy</option>
-                </select>
-                <br />
-                <input type="submit" value="Search by User" />
-            </form>
-            <form>
-                Printer:
-                <select name="printer">
-                    <option value="Steel">Steel</option>
-                    <option value="Brass">Brass</option>
-                </select>
-                <br />
-                <input type="submit" value="Search by User" />
-            </form>
-            <form>
-                <input type="hidden" name="showAll" value="displayAll"/>
-                <br />
-                <input type="submit" value="Display All" />
-            </form>
+
+            <div class="flex-container">
+                <form>
+                User: 
+                <select name="user" required>
+                    <option disabled selected> -- select an option -- </option>
+                    <?php
+                    $rows = $db->query('SELECT * FROM users');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['user_id'] . "'>" . $row['display_name'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                    <input type="submit" value="Search by User" />
+                </form>
+                <form>
+                    Printer:
+                <select name="printer" required>
+                    <option disabled selected> -- select an option -- </option>
+                    <?php
+                    $rows = $db->query('SELECT * FROM printer');
+
+                    foreach ($rows as $row) {
+                        echo "<option value='" . $row['printer_id'] . "'>" . $row['printer_name'] . "</option>";
+                    }
+                    ?>
+                </select><br />
+                    <input type="submit" value="Search by User" />
+                </form>
+                <form>
+                    <input type="hidden" name="showAll" value="displayAll" />
+                    <br />
+                    <input type="submit" value="Display All" />
+                </form>
+            </div>
 
             <?php
             if (isset($_GET['user'])) {
