@@ -11,13 +11,13 @@ $email = htmlspecialchars($_POST['email']);
 $username = htmlspecialchars($_POST['username']);
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-// Gets the current weight for the spool and sets it to a variable
+// Gets the current username
 $sql = "SELECT username FROM tempusers WHERE username = $username";
-foreach ($db->query($sql) as $row) {
-    $currentUsername = $row['username'];
+foreach ($db->query($sql) as $row1) {
+    $currentUsername = $row1['username'];
 }
 
-if ($username == $currentUsername) {
+if ($currentUsername) {
     $_SESSION['error'] = "The username $username has has already been taken.<br/>Please try again.";
     header("Location: index.php");
     die();
