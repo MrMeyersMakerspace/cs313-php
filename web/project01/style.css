@@ -107,10 +107,7 @@ p {
     font-size: 18px;
 }
 
-h3 {
-	  margin-left: 15%;
-    margin-right: 15%;
-}
+
 
 img {
     max-width: 100%;
@@ -174,6 +171,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: row;
 }
 
 @media screen and (max-width: 850px) {
