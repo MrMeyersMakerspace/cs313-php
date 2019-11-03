@@ -62,7 +62,7 @@ $db = get_db();
                     $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
 
                     foreach ($rows as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['name'] . " - " . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . "</option>";
+                        echo "<option name='spool' value='" . $row['id'] . "'>" . $row['name'] . " - " . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . "</option>";
                     }
                     ?>
                 </select><br />
