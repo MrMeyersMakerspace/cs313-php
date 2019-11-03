@@ -35,9 +35,9 @@ if ($result) {
         $result2 = $statement2->execute();
 
         if ($result2) {
-            $row = $statement->fetch();
-            $hashedPassword2 = $row['password'];
-            $display_name2 = $row['display_name'];
+            $row2 = $statement2->fetch();
+            $hashedPassword2 = $row2['password'];
+            $display_name2 = $row2['display_name'];
 
             if (password_verify($password, $hashedPassword2)) {
                 // Error message if account created but not yet approved by Maker Meyers
