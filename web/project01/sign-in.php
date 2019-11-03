@@ -15,16 +15,18 @@ session_start();
     <header>
         <h1>Sign In</h1>
     </header>
+    <div class="center">
         <p>Please sign in before continuing:</p>
-    <form method="POST" action="login.php">
-        <label>Username:</label><br />
-        <input type="text" name="username" id="username"/><br />
-        <label>Password:</label><br />
-        <input type="text" name="password" id="password"/><br />
-        <button type="submit">Login</button>
-    </form>
-    <br />
-    <br />
-    <a href="sign-up.php" id="signup">Click Here to Create a New Account</a>
+        <form method="POST" action="login.php">
+            <label>Username:</label><br />
+            <input type="text" name="username" id="username" /><br />
+            <label>Password:</label><br />
+            <input type="text" name="password" id="password" /><br />
+            <button type="submit">Login</button>
+        </form>
+        <br />
+        <br />
+        <a href="sign-up.php" id="signup">Click Here to Create a New Account</a>
+    </div>
 </body>
 </html>
