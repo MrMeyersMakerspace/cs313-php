@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['display_name']))
 {
-	$username = $_SESSION['display_name'];
+	$display_name = $_SESSION['display_name'];
 }
 else
 {
