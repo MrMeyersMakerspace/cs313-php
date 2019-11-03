@@ -106,6 +106,7 @@ $db = get_db();
                 $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE fs.filament_left <= 0');
             }
 
+            echo '<div class="flex-container"';
 			foreach ($rows as $row)
 			{
                 echo '<div class="spool"><h3>"' . $row['name'] . '"</h3>';
@@ -116,6 +117,7 @@ $db = get_db();
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
 				echo '</ul></div>';
 			}
+            echo '</div>';
             ?>
 
 
