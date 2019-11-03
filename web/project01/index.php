@@ -118,9 +118,8 @@ $db = get_db();
         if ($result) {
             $row = $statement->fetch();
             $displayName = $row['display_name'];
-            echo '
-    <script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";';
-            echo 'document.getElementById("welcome").style.color = #1c2321;';
+            echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";\n';
+            echo 'document.getElementById("welcome").style.color = #1c2321;\n';
             echo 'document.getElementById("login").style.display = "none";</script>';
         }
     }
