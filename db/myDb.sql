@@ -48,7 +48,6 @@ CREATE TABLE public.filament_spool
 	cost DECIMAL NOT NULL,
 	filament_amount_new INT NOT NULL,
 	color VARCHAR(100) NOT NULL,
-	empty BOOLEAN NOT NULL,
 	notes TEXT,
 	manufacturer_id INT NOT NULL REFERENCES public.filament_manufacturer(id),
 	name VARCHAR(100) NOT NULL
