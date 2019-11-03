@@ -106,18 +106,17 @@ $db = get_db();
                 $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE fs.filament_left <= 0');
             }
 
-            echo '<div class="flex-container"';
 			foreach ($rows as $row)
 			{
-                echo '<div class="spool"><h3>"' . $row['name'] . '"</h3>';
-
+                echo '<h3>"' . $row['name'] . '"</h3>';
+				echo '<ul>';
                 echo '<li>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</li>';
 				echo '<li>' . $row['filament_left'] . ' grams left</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
-				echo '</div>';
+				echo '</ul>';
+				echo '<br/>';
 			}
-            echo '</div>';
             ?>
 
 
