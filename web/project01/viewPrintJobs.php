@@ -63,7 +63,7 @@ $db = get_db();
                     $rows = $db->query('SELECT * FROM users');
 
                     foreach ($rows as $row) {
-                        echo "<option name='user' value='" . $row['user_id'] . "'>" . $row['display_name'] . "</option>";
+                        echo "<option value='" . $row['user_id'] . "'>" . $row['display_name'] . "</option>";
                     }
                     ?>
                 </select><br />
@@ -77,7 +77,7 @@ $db = get_db();
                     $rows = $db->query('SELECT * FROM printer');
 
                     foreach ($rows as $row) {
-                        echo "<option name='printer' value='" . $row['printer_id'] . "'>" . $row['printer_name'] . "</option>";
+                        echo "<option value='" . $row['printer_id'] . "'>" . $row['printer_name'] . "</option>";
                     }
                     ?>
                 </select><br />
