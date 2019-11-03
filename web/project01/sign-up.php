@@ -12,6 +12,9 @@ session_start();
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+    <header>
+        <h1>Sign Up</h1>
+    </header>
     <p>Please fill out the following information for your new account.  Once submitted you will have to wait for approval by Maker Meyers before being able to login.</p>
     <div class="center">
         <form method="POST" action="submit.php">
