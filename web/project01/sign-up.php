@@ -21,7 +21,7 @@ session_start();
             <br />
             <label>Email:</label>
             <br />
-            <input type="text" name="email" id="email" />
+            <input type="email" name="email" id="email" />
             <br />
             <label>Username:</label>
             <br />

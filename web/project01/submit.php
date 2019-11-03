@@ -11,15 +11,7 @@ $email = htmlspecialchars($_POST['email']);
 $username = htmlspecialchars($_POST['username']);
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$result = mysql_query("SELECT * FROM tempusers WHERE username=$username");
-$num_rows = mysql_num_rows($result);
-
-if ($num_rows) {
-    $_SESSION['error'] = "The username $username has already been used.<br/>Please select a different username and try again.";
-    header("Location: index.php");
-    die();
-} else {
-
+try {
     $query = 'INSERT INTO tempusers (display_name, email, username, password) VALUES (:display_name, :email, :username, :password)';
     $statement = $db->prepare($query);
     $statement->bindValue(':display_name', $display_name);
@@ -29,6 +21,12 @@ if ($num_rows) {
     $statement->execute();
 
     $_SESSION['error'] = "The account for $display_name has been submitted for approval by Maker Meyers.<br/>Try signing in later or contact Maker Meyers to speed up approval process.";
+    header("Location: index.php");
+    die();
+}
+catch(PDOException $e)
+{
+    $_SESSION['error'] = "The username <u>$username</u> has already been taken.<br/>Please pick another username and try again.";
     header("Location: index.php");
     die();
 }
