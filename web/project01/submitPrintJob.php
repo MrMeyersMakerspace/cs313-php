@@ -59,7 +59,7 @@ try
     $statement->execute();
 
     // Gets the current weight for the spool and sets it to a variable
-    $sql = "SELECT filament_left FROM filament_spool WHERE id = $spool";
+    $sql = "SELECT filament_left FROM filament_spool WHERE spool_id = $spool";
     foreach ($db->query($sql) as $row) {
         $currentFilament = $row['filament_left'];
     }
@@ -71,7 +71,7 @@ try
     $newWeight = $currentFilament - $filamentUsed;
 
     // Set spool to new weight based off above calculation
-    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE id = :spool';
+    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE spool_id = :spool';
     $statement = $db->prepare($query);
     $statement->bindValue(':newWeight', $newWeight);
     $statement->bindValue(':spool', $spool);

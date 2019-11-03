@@ -27,7 +27,7 @@ echo "weight=$weight\n";
 try
 {
     // Gets the current weight for the spool and sets it to a variable
-    $sql = "SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.id = $spool";
+    $sql = "SELECT filament_manufacturer.empty_spool_weight FROM filament_manufacturer INNER JOIN filament_spool ON filament_manufacturer.id = filament_spool.manufacturer_id WHERE filament_spool.spool_id = $spool";
     foreach ($db->query($sql) as $row) {
         $emptyWeight = $row['empty_spool_weight'];
     }
@@ -38,7 +38,7 @@ try
     $newWeight = $weight - $emptyWeight;
     echo "New Weight = $newWeight\n";
 
-    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE id = :spool';
+    $query = 'UPDATE filament_spool SET filament_left = :newWeight WHERE spool_id = :spool';
     $statement = $db->prepare($query);
 
     $statement->bindValue(':newWeight', $newWeight);
