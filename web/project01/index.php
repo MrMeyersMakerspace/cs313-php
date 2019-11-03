@@ -82,6 +82,13 @@ $db = get_db();
                 </div>
             </div>
 
+            <a href="?logout">Log out</a>
+            <?php
+            if(isset($_GET['logout'])) {
+                session_unset();
+            }
+            ?>
+
         </div>
         <footer>
             <div class="footer-center">
