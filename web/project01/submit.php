@@ -19,7 +19,7 @@ $statement->bindValue(':username', $username);
 $statement->bindValue(':password', $password);
 $statement->execute();
 
-$_SESSION['error'] = "The account for $display_name2 has been submitted for approval by Maker Meyers.<br/>Try signing in later or contact Maker Meyers to speed up approval process.";
+$_SESSION['error'] = "The account for $display_name has been submitted for approval by Maker Meyers.<br/>Try signing in later or contact Maker Meyers to speed up approval process.";
 header("Location: index.php");
 die();
 ?>
