@@ -31,14 +31,14 @@ if ($result) {
         die();
 
     } else {
-        $_SESSION['user_id'] = "wrongPW";
+        $_SESSION['error'] = "wrongPW";
 
         // Wrong password
         header("Location: index.php");
         die();
     }
 } else if ($result2) {
-    $_SESSION['user_id'] = "notYetApproved";
+    $_SESSION['error'] = "notYetApproved";
     header("Location: index.php");
     die();
 }
