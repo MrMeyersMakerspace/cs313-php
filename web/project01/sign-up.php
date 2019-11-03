@@ -9,6 +9,7 @@ session_start();
 <head>
     <meta charset="utf-8" />
     <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
     <p>Please the following information for your new account.  Once submitted you will have to wait for approval by Maker Meyers before being able to login.</p>
