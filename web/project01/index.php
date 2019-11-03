@@ -125,10 +125,10 @@ $db = get_db();
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
         $result = $statement->execute();
+        $row = $statement->fetch();
+        $displayName = $row['display_name'];
 
-        if (isset($result)) {
-            $row = $statement->fetch();
-            $displayName = $row['display_name'];
+        if (isset($displayName)) {
             echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";
 ';
             echo 'document.getElementById("welcome").style.color = "#1c2321";
