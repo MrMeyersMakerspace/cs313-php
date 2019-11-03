@@ -99,14 +99,14 @@ $db = get_db();
             }
 
             if (isset($_GET['printer'])) {
-                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE p.printer_id = :printer');
+                $statement = $db->prepare('SELECT * FROM (((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) INNER JOIN filament_spool fs ON pj.spool_id = fs.id) WHERE p.printer_id = :printer');
                 $statement -> bindValue(':printer', $_GET['printer'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
             }
 
             if (isset($_GET['showAll'])) {
-                $rows = $db->query('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id)');
+                $rows = $db->query('SELECT * FROM (((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) INNER JOIN filament_spool fs ON pj.spool_id = fs.id)');
             }
 
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
