@@ -19,7 +19,7 @@ $statement->bindValue(':username', $username);
 $statement->bindValue(':password', $password);
 $statement->execute();
 
-$_SESSION['user_id'] = "notYetApproved";
+$_SESSION['error'] = "notYetApproved";
 header("Location: index.php");
 die();
 ?>
