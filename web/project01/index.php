@@ -101,13 +101,13 @@ $db = get_db();
 
     <?php
     // Check and see what the login status is
-    if ($_SESSION['user_id'] == "wrongPW") {
+    if ($_SESSION['error'] == "wrongPW") {
         echo '
     <script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";
 ';
         echo 'document.getElementById("welcome").style.color = "red";</script>
 ';
-    } else if ($_SESSION['user_id'] == "notYetApproved") {
+    } else if ($_SESSION['error'] == "notYetApproved") {
         echo '
     <script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";
 ';
