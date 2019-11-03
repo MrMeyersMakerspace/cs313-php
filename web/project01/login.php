@@ -33,4 +33,5 @@ if ($result) {
         header("Location: sign-in.php");
         die();
     }
+}
 ?>
