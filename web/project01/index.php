@@ -103,12 +103,16 @@ $db = get_db();
     // Check and see what the login status is
     if ($_SESSION['user_id'] == "wrongPW") {
         echo '
-    <script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";';
-        echo 'document.getElementById("welcome").style.color = "red";</script>';
+    <script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";
+';
+        echo 'document.getElementById("welcome").style.color = "red";</script>
+';
     } else if ($_SESSION['user_id'] == "notYetApproved") {
         echo '
-    <script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";';
-        echo 'document.getElementById("welcome").style.color = "red";</script>';
+    <script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";
+';
+        echo 'document.getElementById("welcome").style.color = "red";</script>
+';
     } else {
         $query = 'SELECT display_name FROM users WHERE username = :username';
         $statement = $db->prepare($query);
@@ -122,7 +126,8 @@ $db = get_db();
 ';
             echo 'document.getElementById("welcome").style.color = "#1c2321";
 ';
-            echo 'document.getElementById("login").style.display = "none";</script>';
+            echo 'document.getElementById("login").style.display = "none";</script>
+';
         }
     }
     ?>
