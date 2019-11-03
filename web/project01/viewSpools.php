@@ -54,33 +54,35 @@ $db = get_db();
             <h1>View Current Spools</h1>
 
             <h2 style="text-align:center;">Search by plastic type, color of filament, or display all available spools!</h2>
-            <form>
-                Type of Plastic:
-                <select name="plasticType">
-                    <option value="PLA">PLA</option>
-                    <option value="PETG">PETG</option>
-                    <option value="ABS">ABS</option>
-                    <option value="TPU">TPU</option>
-                </select>
-                <br />
-                <input type="submit" value="Search by Plastic Type" />
-            </form>
-            <form>
-                Color:
-                <input type="text" name="color" />
-                <br />
-                <input type="submit" value="Search by Color" />
-            </form>
-            <form>
-                <input type="hidden" name="showAll" value="displayAll"/>
-                <br />
-                <input type="submit" value="Display All" />
-            </form>
-            <form>
-                <input type="hidden" name="showEmpty" value="showEmpty"/>
-                <br />
-                <input type="submit" value="Show Empty Spools" />
-            </form>
+            <div class="flex-container">
+                <form>
+                    Type of Plastic:
+                    <select name="plasticType">
+                        <option value="PLA">PLA</option>
+                        <option value="PETG">PETG</option>
+                        <option value="ABS">ABS</option>
+                        <option value="TPU">TPU</option>
+                    </select>
+                    <br />
+                    <input type="submit" value="Search by Plastic Type" />
+                </form>
+                <form>
+                    Color:
+                    <input type="text" name="color" />
+                    <br />
+                    <input type="submit" value="Search by Color" />
+                </form>
+                <form>
+                    <input type="hidden" name="showAll" value="displayAll" />
+                    <br />
+                    <input type="submit" value="Display All" />
+                </form>
+                <form>
+                    <input type="hidden" name="showEmpty" value="showEmpty" />
+                    <br />
+                    <input type="submit" value="Show Empty Spools" />
+                </form>
+            </div>
 
             <?php
  
