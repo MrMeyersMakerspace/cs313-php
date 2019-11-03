@@ -63,7 +63,7 @@ $db = get_db();
                     $rows = $db->query('SELECT * FROM users');
 
                     foreach ($rows as $row) {
-                        echo "<option value='" . $row['user_id'] . "'>" . $row['display_name'] . "</option>";
+                        echo "<option name='user' value='" . $row['user_id'] . "'>" . $row['display_name'] . "</option>";
                     }
                     ?>
                 </select><br />
@@ -77,7 +77,7 @@ $db = get_db();
                     $rows = $db->query('SELECT * FROM printer');
 
                     foreach ($rows as $row) {
-                        echo "<option value='" . $row['printer_id'] . "'>" . $row['printer_name'] . "</option>";
+                        echo "<option name='printer' value='" . $row['printer_id'] . "'>" . $row['printer_name'] . "</option>";
                     }
                     ?>
                 </select><br />
@@ -116,7 +116,7 @@ $db = get_db();
 				echo '<ul>';
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
 				echo '<li>Printed on: ' . $row['printer_name'] . '</li>';
-				echo '<li>Print time: ' . $row['time_hours'] . ' hours ' . $row['time_minutes'] . ' minutes</li>';
+				echo '<li>Print time: ' . $row['time_hours'] . ' hr ' . $row['time_minutes'] . ' min</li>';
 				echo '<li>Print date: ' . $row['date'] . '</li>';
 				echo '<li>Printed by: ' . $row['display_name'] . '</li>';
 				echo '</ul>';
