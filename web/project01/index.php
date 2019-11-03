@@ -120,7 +120,7 @@ $db = get_db();
             $displayName = $row['display_name'];
             echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";
 ';
-            echo 'document.getElementById("welcome").style.color = #1c2321;
+            echo 'document.getElementById("welcome").style.color = "#1c2321";
 ';
             echo 'document.getElementById("login").style.display = "none";</script>';
         }
