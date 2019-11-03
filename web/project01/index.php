@@ -117,7 +117,7 @@ $db = get_db();
 
         if ($result) {
             $row = $statement->fetch();
-            $displayName = $rwo['display_name'];
+            $displayName = $row['display_name'];
             echo '
     <script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";';
             echo 'document.getElementById("welcome").style.color = #1c2321;';
