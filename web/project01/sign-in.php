@@ -15,6 +15,13 @@ session_start();
     <header>
         <h1>Sign In</h1>
     </header>
+    
+    <?php
+        if (isset($_SESSION['error'])) {
+            echo '<div class="center" id="error">' . $_SESSION['error'] . '</div>';
+        }
+    ?>
+
     <div class="center">
         <p>Please sign in before continuing:</p>
         <form method="POST" action="login.php">

@@ -159,6 +159,11 @@ ul {
     text-align: center;
 }
 
+#error {
+    font-size: 18px;
+    color: red;
+}
+
 
 
 

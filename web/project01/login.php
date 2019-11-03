@@ -9,6 +9,7 @@ $db = get_db();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+// Check for password in users table
 $query = 'SELECT password, display_name FROM users WHERE username = :username';
 $statement = $db->prepare($query);
 $statement->bindValue(':username', $username);
@@ -27,11 +28,30 @@ if ($result) {
         die();
 
     } else {
-        $_SESSION['error'] = "wrongPW";
+        // Check for password in tempusers table
+        $query2 = 'SELECT password, display_name FROM tempusers WHERE username = :username';
+        $statement2 = $db->prepare($query2);
+        $statement2->bindValue(':username', $username);
+        $result2 = $statement2->execute();
 
-        // Wrong password
-        header("Location: sign-in.php");
-        die();
+        if ($result2) {
+            $row = $statement->fetch();
+            $hashedPassword2 = $row['password'];
+            $display_name2 = $row['display_name'];
+
+            if (password_verify($password, $hashedPassword2)) {
+                // Error message if account created but not yet approved by Maker Meyers
+                $_SESSION['error'] = "$display_name2 has not yet been approved by Maker Meyers";
+
+                header("Location: index.php");
+                die();
+            } else {
+                // Wrong password
+                $_SESSION['error'] = "Wrong password entered.  Try again!";
+                header("Location: sign-in.php");
+                die();
+            }
+        }
     }
 }
 ?>
