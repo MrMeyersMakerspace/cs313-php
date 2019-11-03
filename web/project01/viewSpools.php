@@ -76,25 +76,34 @@ $db = get_db();
                 <br />
                 <input type="submit" value="Display All" />
             </form>
+            <form>
+                <input type="hidden" name="showEmpty" value="showEmpty"/>
+                <br />
+                <input type="submit" value="Show Empty Spools" />
+            </form>
 
             <?php
  
             if (isset($_GET['plasticType'])) {
-                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType');
+                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE type_of_plastic = :plasticType AND filament_left > 0');
                 $statement -> bindValue(':plasticType', $_GET['plasticType'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
             }
 
             if (isset($_GET['color'])) {
-                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE color = :color');
+                $statement = $db->prepare('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE color = :color AND filament_left > 0');
                 $statement -> bindValue(':color', $_GET['color'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
             }
 
             if (isset($_GET['showAll'])) {
-                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id)');
+                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE filament_left > 0');
+            }
+
+            if (isset($_GET['showEmpty'])) {
+                $rows = $db->query('SELECT * FROM ((filament_spool fs INNER JOIN filament_manufacturer fm ON fs.manufacturer_id = fm.id) INNER JOIN filament_type ft ON fs.filament_id = ft.id) WHERE filament_left <= 0');
             }
 
 			foreach ($rows as $row)
