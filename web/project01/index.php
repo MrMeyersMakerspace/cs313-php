@@ -5,28 +5,6 @@ session_start();
 // Connect to database on startup
 require("dbConnect.php");
 $db = get_db();
-
-// Check and see what the logic status is
-if ($_SESSION['user_id'] == "wrongPW") {
-    echo '<script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";';
-    echo 'document.getElementById("welcome").style.color = "red";</script>';
-} else if ($_SESSION['user_id'] == "notYetApproved") {
-    echo '<script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";';
-    echo 'document.getElementById("welcome").style.color = "red";</script>';
-} else {
-    $query = 'SELECT display_name FROM users WHERE username = :username';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':username', $username);
-    $result = $statement->execute();
-
-    if ($result) {
-        $row = $statement->fetch();
-        $displayName = $rwo['display_name'];
-        echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";';
-        echo 'document.getElementById("welcome").style.color = #1c2321;';
-        echo 'document.getElementById("login").style.display = "none";</script>';
-    }
-}
 ?>
 
 <html>
@@ -121,16 +99,43 @@ if ($_SESSION['user_id'] == "wrongPW") {
         </footer>
     </div>
 
+    <?php
+    // Check and see what the login status is
+    if ($_SESSION['user_id'] == "wrongPW") {
+        echo '
+    <script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";';
+        echo 'document.getElementById("welcome").style.color = "red";</script>';
+    } else if ($_SESSION['user_id'] == "notYetApproved") {
+        echo '
+    <script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";';
+        echo 'document.getElementById("welcome").style.color = "red";</script>';
+    } else {
+        $query = 'SELECT display_name FROM users WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $result = $statement->execute();
+
+        if ($result) {
+            $row = $statement->fetch();
+            $displayName = $rwo['display_name'];
+            echo '
+    <script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";';
+            echo 'document.getElementById("welcome").style.color = #1c2321;';
+            echo 'document.getElementById("login").style.display = "none";</script>';
+        }
+    }
+    ?>
+
     <script>
-    // Shows navigation bar list when icon clicked
-function navigationBar() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+        // Shows navigation bar list when icon clicked
+        function navigationBar() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
     </script>
 </body>
 </html>
