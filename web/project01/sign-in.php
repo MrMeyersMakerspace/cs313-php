@@ -28,7 +28,7 @@ session_start();
             <label>Username:</label><br />
             <input type="text" name="username" id="username" /><br />
             <label>Password:</label><br />
-            <input type="text" name="password" id="password" /><br />
+            <input type="password" name="password" id="password" /><br />
             <button type="submit">Login</button>
         </form>
         <br />

@@ -32,7 +32,7 @@ session_start();
             <br />
             <label>Password:</label>
             <br />
-            <input type="text" name="password" id="password" />
+            <input type="password" name="password" id="password" />
             <br />
             <button type="submit">Submit New Account</button>
         </form>
