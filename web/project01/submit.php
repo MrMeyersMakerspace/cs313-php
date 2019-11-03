@@ -6,6 +6,7 @@ session_start();
 require("dbConnect.php");
 $db = get_db();
 
+$counter = 0;
 $display_name = htmlspecialchars($_POST['display_name']);
 $email = htmlspecialchars($_POST['email']);
 $username = htmlspecialchars($_POST['username']);
@@ -15,9 +16,10 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $sql = "SELECT username FROM tempusers WHERE username = $username";
 foreach ($db->query($sql) as $row1) {
     $currentUsername = $row1['username'];
+    $counter = $counter + 1;
 }
 
-if ($currentUsername) {
+if ($counter == 0) {
     $_SESSION['error'] = "The username $username has has already been taken.<br/>Please try again.";
     header("Location: index.php");
     die();
