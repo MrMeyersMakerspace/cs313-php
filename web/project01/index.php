@@ -2,6 +2,10 @@
 // Start the session
 session_start();
 
+// Connect to database on startup
+require("dbConnect.php");
+$db = get_db();
+
 // Check and see what the logic status is
 if ($_SESSION['user_id'] == "wrongPW") {
     echo '<script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";';
