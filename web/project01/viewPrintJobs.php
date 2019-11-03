@@ -115,10 +115,10 @@ $db = get_db();
 				echo '<h3>Print job - ' . $row['name'] . '</h3>';
 				echo '<ul>';
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
-				echo '<li>Printed on: ' . $row['printer_name'];
-				echo '<li>Print time: ' . $row['print_time'];
-				echo '<li>Print date: ' . $row['date'];
-				echo '<li>Printed by: ' . $row['display_name'];
+				echo '<li>Printed on: ' . $row['printer_name'] . '</li>';
+				echo '<li>Print time: ' . $row['time_hours'] . ' hours ' . $row['time_minutes'] . ' minutes</li>';
+				echo '<li>Print date: ' . $row['date'] . '</li>';
+				echo '<li>Printed by: ' . $row['display_name'] . '</li>';
 				echo '</ul>';
 				echo '<br/>';
 			}
