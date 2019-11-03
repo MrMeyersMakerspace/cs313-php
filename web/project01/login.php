@@ -9,22 +9,18 @@ $db = get_db();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$query = 'SELECT password FROM users WHERE username = :username';
+$query = 'SELECT password, display_name FROM users WHERE username = :username';
 $statement = $db->prepare($query);
 $statement->bindValue(':username', $username);
 $result = $statement->execute();
 
-$query2 = 'SELECT password FROM tempusers WHERE username = :username';
-$statement2 = $db->prepare($query2);
-$statement2->bindValue(':username', $username);
-$result2 = $statement2->execute();
-
 if ($result) {
 	$row = $statement->fetch();
     $hashedPassword = $row['password'];
+    $display_name = $row['display_name'];
 
     if (password_verify($password, $hashedPassword)) {
-        $_SESSION['user_id'] = $username;
+        $_SESSION['display_name'] = $display_name;
 
         // Correct Password
         header("Location: index.php");
@@ -34,7 +30,7 @@ if ($result) {
         $_SESSION['error'] = "wrongPW";
 
         // Wrong password
-        header("Location: index.php");
+        header("Location: sign-in.php");
         die();
     }
 } else if ($result2) {

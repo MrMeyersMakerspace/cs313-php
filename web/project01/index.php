@@ -2,9 +2,15 @@
 // Start the session
 session_start();
 
-// Connect to database on startup
-require("dbConnect.php");
-$db = get_db();
+if (isset($_SESSION['display_name']))
+{
+	$username = $_SESSION['display_name'];
+}
+else
+{
+	header("Location: sign-in.php");
+	die(); // we always include a die after redirects.
+}
 ?>
 
 <html>
@@ -47,7 +53,7 @@ $db = get_db();
                 <a href="https://commons.wikimedia.org/wiki/File:3D_Printing_Materials_(16837486456).jpg" target="_blank" class="caption">Maurizio Pesce (CC BY 2.0)</a>
             </div>
 
-            <div id="welcome"></div>
+            <div id="welcome">Welcome <?php echo $display_name?>!</div>
 
             <p>Welcome to my filament tracker web app, where you can keep track of the filament usage for your 3D printer(s).  I don't know about you but it can be a pain to keep track of how much filament is left on my spools of filament, especially when I'm running a makerspace with multiple 3D printers and 20+ spools of filament.  This web app was created to solve that problem.  I hope it will help you out as much as it helps me.</p>
 
@@ -62,30 +68,11 @@ $db = get_db();
                 <li>Add a new 3D printer to the database.</li>
             </ul>
 
-            <div id="login">
-                <p>Before you can get started you must setup a new account/login.  Please login below or click the link to create a new account.</p>
-                <div class="form">
-                    <form method="POST" action="login.php">
-                        <label>Username:</label>
-                        <br />
-                        <input type="text" name="username" id="username" />
-                        <br />
-                        <label>Password:</label>
-                        <br />
-                        <input type="text" name="password" id="password" />
-                        <br />
-                        <button type="submit">Login</button>
-                    </form>
-                    <br />
-                    <br />
-                    <a href="sign-up.php" id="signup">Click Here to Create a New Account</a>
-                </div>
-            </div>
-
             <div class="center">
-                <a href="?logout">Log out</a>                <?php
+                <a href="?logout">Log out</a>
+                <?php
                 if(isset($_GET['logout'])) {
-                session_unset();
+                    session_unset();
                 }
                 ?>
             </div>
@@ -106,39 +93,6 @@ $db = get_db();
             </div>
         </footer>
     </div>
-
-    <?php
-    // Check and see what the login status is
-    if ($_SESSION['error'] == "wrongPW") {
-        echo '
-    <script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";
-';
-        echo 'document.getElementById("welcome").style.color = "red";</script>
-';
-    } else if ($_SESSION['error'] == "notYetApproved") {
-        echo '
-    <script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";
-';
-        echo 'document.getElementById("welcome").style.color = "red";</script>
-';
-    } else {
-        $query = 'SELECT display_name FROM users WHERE username = :username';
-        $statement = $db->prepare($query);
-        $statement->bindValue(':username', $username);
-        $result = $statement->execute();
-        $row = $statement->fetch();
-        $displayName = $row['display_name'];
-
-        if (isset($displayName)) {
-            echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";
-';
-            echo 'document.getElementById("welcome").style.color = "#1c2321";
-';
-            echo 'document.getElementById("login").style.display = "none";</script>
-';
-        }
-    }
-    ?>
 
     <script>
         // Shows navigation bar list when icon clicked
