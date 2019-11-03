@@ -110,12 +110,12 @@ $db = get_db();
 			foreach ($rows as $row)
 			{
                 echo '<div class="spool"><h3>"' . $row['name'] . '"</h3>';
-				echo '<ul>';
+
                 echo '<li>' . $row['company'] . ' ' . $row['color'] . ' ' . $row['type_of_plastic'] . '</li>';
 				echo '<li>' . $row['filament_left'] . ' grams left</li>';
 				echo '<li>Print temperature: ' . $row['print_temp'] . '&#176; C</li>';
 				echo '<li>Bed temperature: ' . $row['bed_temp'] . '&#176; C</li>';
-				echo '</ul></div>';
+				echo '</div>';
 			}
             echo '</div>';
             ?>
