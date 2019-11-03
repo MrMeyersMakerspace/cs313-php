@@ -92,7 +92,7 @@ $db = get_db();
 
             <?php
             if (isset($_GET['user'])) {
-                $statement = $db->prepare('SELECT * FROM ((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) WHERE u.user_id = :user');
+                $statement = $db->prepare('SELECT * FROM (((print_job pj INNER JOIN users u ON pj.user_id = u.user_id) INNER JOIN printer p ON pj.printer_id = p.printer_id) INNER JOIN filament_spool fs ON pj.spool_id = fs.id) WHERE u.user_id = :user');
                 $statement -> bindValue(':user', $_GET['user'], PDO::PARAM_STR);
                 $statement -> execute();
                 $rows = $statement -> fetchAll(PDO::FETCH_ASSOC);
@@ -112,8 +112,9 @@ $db = get_db();
             //Get data using INNER JOIN from 3 tables (print_job, users, & printers) to display proper names
 			foreach ($rows as $row)
 			{
-				echo '<h3>Print job - ' . $row['name'] . '</h3>';
+				echo '<h3>Print job - ' . $row['pj.name'] . '</h3>';
 				echo '<ul>';
+                echo '<li>Spool used: ' . $row['color'] . ' ' . $row['fs.name'] . '</li>'; 
 				echo '<li>Amount of filament used: ' . $row['filament_used'] . ' grams</li>';
 				echo '<li>Printed on: ' . $row['printer_name'] . '</li>';
 				echo '<li>Print time: ' . $row['time_hours'] . ' hr ' . $row['time_minutes'] . ' min</li>';
