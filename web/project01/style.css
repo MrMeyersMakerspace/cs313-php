@@ -135,7 +135,24 @@ ul {
     font-size: 18px;
 }
 
+.form {
+    text-align: center;
+}
 
+#signup {
+    padding: 5px;
+    background-color: #1c2321;
+    border-radius: 10px;
+}
+
+#signup:hover {
+    background-color: #e7ecef;
+    color: black;
+}
+
+#welcome {
+    font-size: 18px;
+}
 
 
 

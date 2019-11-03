@@ -1,3 +1,29 @@
+<?php
+// Start the session
+session_start();
+
+// Check and see what the logic status is
+if ($_SESSION['user_id'] == "wrongPW") {
+    echo '<script>document.getElementById("welcome").innerHTML = "Wrong password was entered.  Please try again!";</script>';
+    echo '<script>document.getElementById("welcome").style.color = "red";</script>';
+} else if ($_SESSION['user_id'] == "notYetApproved") {
+    echo '<script>document.getElementById("welcome").innerHTML = "User account has not yet been approved.  Please contact Maker Meyers for account approval.";</script>';
+    echo '<script>document.getElementById("welcome").style.color = "red";</script>';
+} else {
+    $query = 'SELECT display_name FROM users WHERE username = :username';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+    $result = $statement->execute();
+
+    if ($result) {
+        $row = $statement->fetch();
+        $displayName = $rwo['display_name'];
+        echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";</script>';
+        echo '<script>document.getElementById("welcome").style.color = #1c2321;</script>';
+        echo '<script>document.getElementById("login").style.display = "none";</script>';
+    }
+}
+?>
 
 <html>
 <head>
@@ -39,6 +65,8 @@
                 <a href="https://commons.wikimedia.org/wiki/File:3D_Printing_Materials_(16837486456).jpg" target="_blank" class="caption">Maurizio Pesce (CC BY 2.0)</a>
             </div>
 
+            <div id="welcome"></div>
+
             <p>Welcome to my filament tracker web app, where you can keep track of the filament usage for your 3D printer(s).  I don't know about you but it can be a pain to keep track of how much filament is left on my spools of filament, especially when I'm running a makerspace with multiple 3D printers and 20+ spools of filament.  This web app was created to solve that problem.  I hope it will help you out as much as it helps me.</p>
 
             <p>This app keeps track of your 3D printers, individual print jobs, and spools of filament.  By using the links above you can go to the specific pages to do the following:</p>
@@ -52,7 +80,25 @@
                 <li>Add a new 3D printer to the database.</li>
             </ul>
 
-            <p>Please take advantage of all of the features present on this web app to keep track of your own spools of 3D filament.</p>
+            <div id="login">
+                <p>Before you can get started you must setup a new account/login.  Please login below or click the link to create a new account.</p>
+                <div class="form">
+                    <form method="POST" action="login.php">
+                        <label>Username:</label>
+                        <br />
+                        <input type="text" name="username" id="username" />
+                        <br />
+                        <label>Password:</label>
+                        <br />
+                        <input type="text" name="password" id="password" />
+                        <br />
+                        <button type="submit">Login</button>
+                    </form>
+                    <br />
+                    <br />
+                    <a href="sign-up.php" id="signup">Click Here to Create a New Account</a>
+                </div>
+            </div>
 
         </div>
         <footer>
