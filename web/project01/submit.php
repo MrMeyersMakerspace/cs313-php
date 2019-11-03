@@ -15,21 +15,22 @@ $query = 'SELECT username FROM tempusers WHERE username = :username';
 $statement = $db->prepare($query);
 $statement->bindValue(':username', $username);
 $result = $statement->execute();
+$row = $statement->fetch();
+$checkedUsername = $row['username'];
 
-if ($result) {
-    $row = $statement->fetch();
+if ($checkedUsername == "") {
     $_SESSION['error'] = "The username $username has already been taken.<br/>Try again with a new username.";
     header("Location: index.php");
     die();
 
 } else {
-    $query = 'INSERT INTO tempusers (display_name, email, username, password) VALUES (:display_name, :email, :username, :password)';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':display_name', $display_name);
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':username', $username);
-    $statement->bindValue(':password', $password);
-    $statement->execute();
+    $query2 = 'INSERT INTO tempusers (display_name, email, username, password) VALUES (:display_name, :email, :username, :password)';
+    $statement2 = $db->prepare($query2);
+    $statement2->bindValue(':display_name', $display_name);
+    $statement2->bindValue(':email', $email);
+    $statement2->bindValue(':username', $username);
+    $statement2->bindValue(':password', $password);
+    $statement2->execute();
 }
 
 $_SESSION['error'] = "The account for $display_name has been submitted for approval by Maker Meyers.<br/>Try signing in later or contact Maker Meyers to speed up approval process.";
