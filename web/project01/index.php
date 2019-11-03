@@ -2,6 +2,7 @@
 // Start the session
 session_start();
 
+// Redirect if not logged in
 if (isset($_SESSION['display_name']))
 {
 	$display_name = $_SESSION['display_name'];
@@ -9,7 +10,7 @@ if (isset($_SESSION['display_name']))
 else
 {
 	header("Location: sign-in.php");
-	die(); // we always include a die after redirects.
+	die();
 }
 ?>
 
