@@ -41,7 +41,7 @@ if ($result) {
 
             if (password_verify($password, $hashedPassword2)) {
                 // Error message if account created but not yet approved by Maker Meyers
-                $_SESSION['error'] = "$display_name2 has not yet been approved by Maker Meyers";
+                $_SESSION['error'] = "The account for $display_name2 has not yet been approved by Maker Meyers.\nTry signing in later or contact Maker Meyers to speed up approval.";
 
                 header("Location: index.php");
                 die();
