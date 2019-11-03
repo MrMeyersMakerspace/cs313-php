@@ -126,7 +126,7 @@ $db = get_db();
         $statement->bindValue(':username', $username);
         $result = $statement->execute();
 
-        if ($result) {
+        if (isset($result)) {
             $row = $statement->fetch();
             $displayName = $row['display_name'];
             echo '<script>document.getElementById("welcome").innerHTML = "Welcome ' . $displayName . '!";
