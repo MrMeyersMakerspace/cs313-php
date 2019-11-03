@@ -33,9 +33,4 @@ if ($result) {
         header("Location: sign-in.php");
         die();
     }
-} else if ($result2) {
-    $_SESSION['error'] = "notYetApproved";
-    header("Location: index.php");
-    die();
-}
 ?>
