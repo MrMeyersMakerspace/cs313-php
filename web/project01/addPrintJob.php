@@ -58,6 +58,7 @@ $db = get_db();
                 Name: <input type="text" name="job_name" placeholder="Job Name" required/><br />
 
                 Spool Used: 
+                <!-- Shows all non empty filament spools -->
                 <select name="spool" required>
                     <option disabled selected> -- select an option -- </option>
                     <?php
